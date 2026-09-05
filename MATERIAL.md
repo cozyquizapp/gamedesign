@@ -1,5 +1,7 @@
 # Material, Werkzeuge, Vorlagen
 
+Ausgelegt auf **einen Laptop** und **keine Schüler-Accounts**.
+
 ## Analoger Baukasten (einmalig ca. 100–150 €)
 
 | Material | Menge | Wofür |
@@ -17,18 +19,41 @@
 **Prinzip:** Nichts wird endgültig gebastelt, bevor die Regeln stehen. Bleistift
 und Klebezettel sind die wichtigsten Werkzeuge des Kurses.
 
-## Digitale Werkzeuge
+## Zusatzmaterial für den Unplugged-Teil (Modul C)
 
-| Werkzeug | Link | Kosten | Hinweis |
-|---|---|---|---|
-| Scratch | scratch.mit.edu | kostenlos | Browser oder Offline-Editor; deutschsprachig |
-| Twine | twinery.org | kostenlos | Läuft im Browser, keine Installation, keine Accounts |
-| Makey Makey | makeymakey.com | ca. 50 €/Set | Zwei Sets reichen für Stationsbetrieb |
-| micro:bit (optional) | microbit.org | ca. 20 €/Stück | Nur als Zusatzspur für die Schnellsten |
+- **Befehlskarten** (A6, laminiert, je 10 Stück): `vor`, `zurück`, `dreh links`,
+  `dreh rechts`, `nimm`, `lege ab`, `wiederhole … mal`, `wenn … dann`
+- **Parcours-Material:** Kreppband für Bodenraster, Pappkartons als Hindernisse,
+  ein Gegenstand zum Einsammeln
+- **Papier-Scratch-Blockkarten:** Ausdrucke der Scratch-Blöcke zum Ausschneiden.
+  Ein Satz reicht pro Tandem; wer mag, laminiert und arbeitet mit Klett.
+  (Vorlage: Screenshot der Blockpalette aus dem Offline-Editor, vergrößert.)
 
-**Datenschutz:** Twine und der Scratch-Offline-Editor kommen ohne Accounts aus —
-das ist der einfachste Weg, den Kurs ohne Einwilligungsverfahren zu starten.
-Scratch-Online-Accounts nur mit Elterneinwilligung und Sammel-Accounts der Schule.
+## Digitale Ausstattung
+
+| Posten | Kosten | Hinweis |
+|---|---|---|
+| **1 Laptop** mit Scratch-Offline-Editor (Scratch App, scratch.mit.edu/download) | vorhanden | Läuft ohne Internet, ohne Account, sendet nichts |
+| **Beamer oder großer Bildschirm** | möglichst vorhanden | Trägt das Plenum-Livecoding; ohne ihn verliert Modul D die Hälfte |
+| **USB-Stick** für Projektsicherung | ~10 € | Wöchentliche Kopie des Kursordners |
+| **Makey Makey** (optional) | ~50 € | Ein Set genügt bei einem Laptop völlig |
+
+**Kein** Twine, **kein** Roblox, **kein** Online-Scratch — siehe Begründung im
+Konzept, Abschnitt 7. Die Verzweigungsgeschichte gibt es stattdessen analog als
+Karteikarten-Labyrinth.
+
+## Ordnung auf dem einen Laptop
+
+```
+Kursordner/
+  00_Kursspiel/          das gemeinsame Projekt aus Modul D
+  Tandem_Anna_Ben/       ein Ordner pro Tandem
+  Tandem_Cem_Dilan/
+  99_Sicherung/          wöchentliche Kopie, zusätzlich auf USB-Stick
+```
+
+Dateiname immer `Spielname_Datum.sb3` — nie überschreiben, immer neue Version.
+Das kostet nichts und rettet den Nachmittag, an dem ein Kind etwas kaputt macht.
 
 ## Vorlagen zum Ausdrucken
 
@@ -41,6 +66,15 @@ Ziel · Regeln · Entscheidung · Zufall · Rückmeldung
 - "Ich hätte gern entschieden, ob …"
 - "Gelangweilt habe ich mich, als …"
 
+**Laptop-Laufzettel (A2, an der Wand):**
+Tabelle mit Tandems in der Zeile, Einheiten in der Spalte. Jeder Stationsbesuch
+wird abgehakt. Macht Fairness sichtbar und beendet die Diskussion, bevor sie
+anfängt.
+
+**Auftragskarte für die Laptop-Station (A5):**
+Heute schaffe ich: … · Mein Plan (Papier-Scratch anheften) · Geschafft: … ·
+Noch offen: … · Nächstes Mal zuerst: …
+
 **Constraint-Karten (für schnelle Kinder, A7):**
 Ohne Würfel · Höchstens 5 Minuten Spielzeit · Ohne ein einziges Wort Text ·
 Man verliert nie ganz · Nur eine einzige Regel · Für 2 und für 4 Personen ·
@@ -49,9 +83,9 @@ Auch für einen Fünfjährigen spielbar · Passt in eine Streichholzschachtel
 **Designtagebuch (A5-Heft, drei Zeilen pro Einheit):**
 Was habe ich geändert? — Warum? — Was hat der Playtest gesagt?
 
-**Projektvertrag (A5, Modul D):**
-Mein Spiel heißt … · Es ist für … · Fertig ist es, wenn … · Ich brauche dafür …
-· Unterschrift + Datum
+**Projektvertrag (A5, Modul E):**
+Mein Spiel heißt … · Es ist für … · Fertig ist es, wenn … · Ich brauche dafür … ·
+Laptop-Zeit, die ich brauche: … · Unterschrift + Datum
 
 ## Spiele als Anschauungsmaterial
 

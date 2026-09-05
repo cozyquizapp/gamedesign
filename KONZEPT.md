@@ -3,6 +3,7 @@
 **Kursformat:** Enrichment-Kurs, analog **und** digital
 **Zielgruppe:** 8–10 Jahre, hochbegabt / besonders begabt, 6–10 Kinder
 **Umfang:** 30 Doppelstunden (90 min) über ein Schuljahr — modular kürzbar auf 15
+**Technik:** **ein einziger Laptop**, keine Schüler-Accounts, keine Cloud
 
 ---
 
@@ -31,23 +32,55 @@ Der Kursaufbau folgt dem Drei-Stufen-Modell (Renzulli), das für Begabtenförder
 etabliert ist:
 
 - **Typ I – Entdecken (Modul A):** Breites Erkunden. Was ist überhaupt ein Spiel?
-- **Typ II – Handwerk (Module B, C):** Methoden und Werkzeuge trainieren.
-  Prototyping, Playtesting, Scratch, Twine.
-- **Typ III – Eigenes Vorhaben (Modul D):** Ein selbstgewähltes, echtes Projekt
-  für ein echtes Publikum — die Spielemesse am Schuljahresende.
-
-Der springende Punkt: Typ III ist **kein** Abschluss-Ritual, sondern das Ziel.
-Alles davor dient nur dazu, dass die Kinder ihr eigenes Vorhaben tragen können.
+- **Typ II – Handwerk (Module B, C, D):** Methoden und Werkzeuge trainieren.
+  Prototyping, Playtesting, algorithmisches Denken, Scratch.
+- **Typ III – Eigenes Vorhaben (Modul E):** Ein selbstgewähltes Projekt mit
+  echtem Gegenüber — anderen Kindern, die es spielen und beurteilen.
 
 ---
 
-## 2. Kursaufbau im Überblick
+## 2. Die zentrale Rahmenbedingung: ein Laptop
+
+Ein Gerät für acht Kinder ist keine Notlösung, die man wegorganisiert. Es ist
+eine Beschränkung, die den Kurs **besser** macht, wenn man sie zum Prinzip
+erhebt:
+
+> **Am Laptop wird nicht nachgedacht. Am Laptop wird abgetippt und getestet.**
+
+Gedacht, entworfen und gestritten wird auf Papier. Wer an den Laptop will, bringt
+einen fertigen Plan mit. Das dreht die typische Falle des Informatikunterrichts
+um: Kinder mit eigenem Gerät probieren planlos herum, bis irgendwas passiert.
+Kinder mit fünfzehn wertvollen Minuten am einzigen Laptop planen vorher — und
+lernen dabei genau das, worum es beim Programmieren geht.
+
+Vier Betriebsarten tragen den digitalen Teil:
+
+| Betriebsart | Wie | Wofür |
+|---|---|---|
+| **Plenum-Livecoding** | Laptop am Beamer/großen Bildschirm. Die Gruppe programmiert gemeinsam, *ein* Kind ist die "Hand" (Rollenwechsel alle 5 min) | Neues einführen, Fehler gemeinsam jagen |
+| **Laptop-Station** | Ein Tandem 15 min mit klarer Auftragskarte, während alle anderen analog arbeiten | Eigenes Umsetzen, planbare Rotation |
+| **Papier-Scratch** | Ausgeschnittene Blockkarten werden auf Papier zum Programm geklebt | Vorbereitung für die Station, funktioniert für alle gleichzeitig |
+| **Unplugged** | Programmieren ganz ohne Gerät (Modul C) | Algorithmisches Denken für die ganze Gruppe |
+
+**Der Laufzettel** hängt an der Wand: Jedes Tandem sieht, wann es dran ist und
+wie oft es schon dran war. Fairness ist bei dieser Zielgruppe kein Nebenthema —
+ohne sichtbares System gibt es jede Woche dieselbe Diskussion.
+
+**Ein gemeinsames Kursspiel statt zehn Einzelprojekten.** In Modul D bauen alle
+an *einem* Scratch-Spiel: jedes Tandem ist für eine Figur, ein Level oder eine
+Mechanik zuständig. Das passt zum einen Gerät, und es ist ehrlicher — echte
+Spiele entstehen auch im Team.
+
+---
+
+## 3. Kursaufbau im Überblick
 
 ```
-Modul A  Was ist ein Spiel?            4 Einheiten   analog
-Modul B  Analoges Prototyping          8 Einheiten   analog
-Modul C  Digitale Werkstatt           10 Einheiten   digital
-Modul D  Eigenes Projekt + Messe       8 Einheiten   frei wählbar
+Modul A  Was ist ein Spiel?              4 Einheiten   analog
+Modul B  Analoges Prototyping            8 Einheiten   analog
+Modul C  Programmieren ohne Strom        4 Einheiten   unplugged
+Modul D  Digitale Werkstatt              6 Einheiten   1 Laptop, Plenum + Station
+Modul E  Eigenes Projekt + Spielefest    8 Einheiten   frei wählbar
 ```
 
 Analog kommt bewusst zuerst. Wer im Scratch-Editor anfängt, lernt Scratch.
@@ -56,7 +89,7 @@ nicht als Thema.
 
 ---
 
-## 3. Modul A — Was ist ein Spiel? (4 Einheiten, analog)
+## 4. Modul A — Was ist ein Spiel? (4 Einheiten, analog)
 
 **Ziel:** Die Kinder bekommen Vokabular. Ohne Begriffe kann man über Design nicht
 reden, nur "cool" und "langweilig" sagen.
@@ -88,7 +121,7 @@ Ein Plakat, das den ganzen Kurs über hängen bleibt:
 
 ---
 
-## 4. Modul B — Analoges Prototyping (8 Einheiten)
+## 5. Modul B — Analoges Prototyping (8 Einheiten)
 
 **Ziel:** Der komplette Design-Zyklus, mehrfach durchlaufen, in klein.
 
@@ -137,68 +170,108 @@ Klebepunkte, Sanduhr, Muggelsteine, Stifte, Schere, Kleber, Papier in 3 Farben.
 
 ---
 
-## 5. Modul C — Digitale Werkstatt (10 Einheiten)
+## 6. Modul C — Programmieren ohne Strom (4 Einheiten, unplugged)
 
-**Ziel:** Ein analoges Design digital umsetzen — und die Werkzeuge kennenlernen,
-mit denen das geht.
+Dieses Modul gäbe es in einem Kurs mit Klassensatz Tablets vermutlich nicht.
+Mit einem Laptop wird es zur Notwendigkeit — und ist inhaltlich der beste Teil
+des Kurses, weil hier **alle gleichzeitig** programmieren.
 
-### Werkzeugwahl
-
-| Werkzeug | Wofür | Warum für diese Altersgruppe |
-|---|---|---|
-| **Scratch** | Kern des Moduls | Blockbasiert, deutschsprachig, kostenlos, riesige Community, offline nutzbar |
-| **Twine** | Textadventure | Kein Code nötig, verzahnt sich mit Deutsch/Schreiben; ideal für Kinder, die lieber erzählen als programmieren |
-| **Makey Makey** | Eigene Controller | Verbindet analog und digital physisch — Bananen-Joystick fürs eigene Scratch-Spiel |
-| **micro:bit** | optional | Sensoren, Würfel-Bauteil; gut für die schnellsten Kinder als Zusatzspur |
-
-Bewusst **nicht**: Roblox Studio und Minecraft-Modding (Lernkurve zu steil, zu
-viel Account-/Datenschutzaufwand), Unity (chancenlos in dem Alter), fertige
-Baukästen mit Klick-Ergebnis (kein Design, nur Konsum).
-
-### Aufbau
-
-- **C1–C2 Scratch-Grundlagen ohne Projekt:** Bewegung, Ereignisse, Kollision.
-  Kurze, geschlossene Aufgaben ("Die Katze soll dem Mauszeiger folgen").
-- **C3–C4 Der Klassiker:** Ein einfaches Sammelspiel bauen — Figur, Beute,
-  Punktezähler, Timer. Alle bauen dasselbe. Danach: **jedes Kind ändert genau
-  eine Sache** und die Gruppe rät, welche.
-- **C5–C6 Variablen & Balancing digital:** Schwierigkeit über Zahlen steuern
-  (Geschwindigkeit, Anzahl Gegner, Zeit). Direkte Fortsetzung von B3.
-- **C7–C8 Twine-Parallelspur:** Verzweigte Geschichte mit mindestens drei Enden.
-  Fachlich Deutsch, aber Design: *Wann ist eine Wahl echt und wann nur Kosmetik?*
-- **C9–C10 Portierung:** Ein Spiel aus Modul B wird digital. Dabei entdecken die
-  Kinder von selbst, was der Computer besser kann (rechnen, Zufall, nie vergessen)
-  und was Papier besser kann (Regeln ändern mitten im Spiel).
-
-**Organisation:** Zweiergruppen an einem Rechner, feste Rollen (Pilot/Navigator),
-Rollentausch alle 20 min. Verhindert, dass ein Kind tippt und eins zuschaut.
+- **C1 Der Roboter:** Ein Kind ist Roboter und tut *nur*, was auf den
+  Befehlskarten steht (`vor`, `dreh links`, `nimm`). Die Gruppe schreibt ein
+  Programm, das den Roboter durch einen Parcours führt. Der Roboter interpretiert
+  gnadenlos wörtlich. Das ist die ganze Informatik in einer Doppelstunde.
+- **C2 Wiederholung und Bedingung:** Der Parcours wird zu lang für Einzelbefehle.
+  Die Gruppe erfindet — angeleitet — Schleifen (`3 mal: …`) und Bedingungen
+  (`wenn Wand: dreh rechts`). Kinder erfinden diese Konzepte selbst, wenn die
+  Aufgabe sie erzwingt.
+- **C3 Fehlersuche:** Die Lehrkraft gibt ein Programm mit *einem* Fehler aus. Wer
+  findet ihn, ohne es laufen zu lassen? Danach: Programme gegenseitig sabotieren
+  und die Fehler des anderen Tandems suchen. (Debugging als Spiel — sehr beliebt.)
+- **C4 Papier-Scratch:** Die echten Scratch-Blöcke als ausgeschnittene Karten.
+  Jedes Tandem klebt sein erstes Programm auf Papier. Diese Blätter sind die
+  Eintrittskarte zum Laptop in Modul D.
 
 ---
 
-## 6. Modul D — Eigenes Projekt & Spielemesse (8 Einheiten)
+## 7. Modul D — Digitale Werkstatt am einen Laptop (6 Einheiten)
+
+**Werkzeug:** Scratch, ausschließlich im **Offline-Editor** (Scratch App).
+Kein Account, keine Anmeldung, keine Cloud. Projekte liegen in einem
+Kursordner auf dem Laptop, Sicherung auf einem USB-Stick.
+
+### Ablauf
+
+- **D1 Plenum:** Bühne, Figur, Bewegung, Ereignisse. Laptop am großen Bildschirm,
+  die Gruppe diktiert, ein Kind ist die Hand (Wechsel alle 5 min).
+- **D2 Plenum:** Kollision und Punktestand. Gemeinsam entsteht ein winziges
+  Sammelspiel, das alle kennen — es wird die Grundlage des Kursspiels.
+- **D3 Stationsbetrieb beginnt:** Ab jetzt läuft in jeder Einheit parallel
+  analoges Arbeiten (Modul-B-Projekte weiterbauen, Grafiken zeichnen, Papier-
+  Scratch planen) und die Laptop-Station mit Auftragskarte, 15 min pro Tandem.
+  In 90 Minuten kommen so vier Tandems dran; bei 4 Einheiten Station ist jedes
+  Tandem mindestens dreimal am Gerät.
+- **D4 Variablen & Schwierigkeit:** Plenum-Einführung, dann an der Station:
+  Tempo, Gegnerzahl, Zeit. Direkte Fortsetzung des Balancings aus B3 — die Zahl
+  im Code macht dasselbe wie die Zahl auf der Karte.
+- **D5 Das Kursspiel:** Jedes Tandem verantwortet eine Figur oder Mechanik im
+  gemeinsamen Projekt. Wer an die Station geht, baut seinen Teil ein.
+- **D6 Zusammenbau und Playtest:** Das Kursspiel läuft am Beamer, alle spielen
+  reihum, Feedbackkarten wie im analogen Teil. Dieselbe Methode, anderes Medium —
+  das ist die eigentliche Pointe des Kurses.
+
+### Was die Kinder an der Station bekommen
+
+Eine **Auftragskarte** mit genau einem Ziel ("Deine Figur soll sich mit den
+Pfeiltasten bewegen und an der Wand stoppen"), Platz für ihren Papier-Scratch-Plan
+und eine Zeile "Das habe ich geschafft / Das ist noch offen". Wer ohne Plan
+kommt, geht zurück an den Tisch. Diese Regel muss einmal durchgehalten werden,
+dann funktioniert sie.
+
+### Eigener Controller (optional)
+
+Ein Makey Makey (ca. 50 €) passt perfekt zu einem einzelnen Laptop: Alle bauen
+ihre Controller analog aus Pappe, Alufolie und Knete, angeschlossen wird reihum.
+Die Wartezeit ist hier kein Problem, sondern Bastelzeit.
+
+### Bewusst nicht
+
+Twine wäre inhaltlich reizvoll (verzweigte Geschichten), ist aber ein
+Einzelarbeits-Werkzeug und mit einem Gerät nicht sinnvoll zu betreiben. Die
+Verzweigungsgeschichte funktioniert analog sogar besser: **Karteikarten mit
+Nummern**, die auf andere Karten verweisen, ausgelegt auf dem Boden. Als
+Zusatzangebot in Modul E ideal.
+
+---
+
+## 8. Modul E — Eigenes Projekt & Spielefest (8 Einheiten)
 
 Hier passiert das eigentliche Enrichment. Jedes Kind (oder Tandem) wählt frei:
-analog, digital oder hybrid.
+analog, digital oder hybrid — wobei digitale Projekte sich die Laptop-Station
+teilen und deshalb klein geschnitten sein müssen.
 
 **Ablauf mit echten Meilensteinen:**
 
 1. **Pitch** (1 Einheit): 90 Sekunden vor der Gruppe. Was ist das Spiel, für wen,
    was ist daran neu? Nur wer gepitcht hat, darf bauen.
 2. **Projektvertrag:** Ein A5-Blatt — Ziel, was bis wann fertig ist, was ich
-   brauche. Vom Kind unterschrieben. Struktur ohne Fremdbestimmung.
+   brauche, wie viel Laptop-Zeit ich einplane. Vom Kind unterschrieben.
 3. **Bauphase** (4 Einheiten) mit **zwei Pflicht-Playtests** an festen Terminen.
 4. **Politur & Anleitung** (1 Einheit): Regelheft schreiben, das ohne den Erfinder
    funktioniert. Testkriterium: Eine fremde Person spielt nur nach dem Heft.
-5. **Spielemesse** (2 Einheiten): Öffentlich. Eine Parallelklasse, die Eltern oder
-   die ganze Schule kommt zum Spielen. Jedes Kind hat einen Tisch, ein Plakat und
-   eine Rolle.
+5. **Spielefest** (2 Einheiten): Kursintern, plus — wenn es organisatorisch
+   einfach ist — eine Parallelklasse als Testgruppe. Keine Bühne, kein Publikum,
+   keine Eltern: nur Kinder, die die Spiele spielen und ehrlich sagen, was sie
+   davon halten.
 
-Die Messe ist nicht Deko. Ein echtes Publikum ist der Grund, warum die Kinder in
-Modul D anders arbeiten als bei einer Übungsaufgabe.
+Das Testpublikum ist der einzige Teil, den ich ungern streichen würde. Nicht als
+Präsentation, sondern weil ein fremdes Kind am Tisch etwas auslöst, was zwölf
+Wochen Kursbetrieb nicht schaffen: Der Erfinder sieht zum ersten Mal jemanden,
+der die Anleitung wirklich braucht. Wenn eine Parallelklasse nicht geht, tun es
+auch Geschwisterkinder oder die Betreuung im Hort.
 
 ---
 
-## 7. Differenzierung für hochbegabte Kinder
+## 9. Differenzierung für hochbegabte Kinder
 
 Das Kursformat ist von sich aus offen — es braucht trotzdem gezielte Griffe:
 
@@ -213,8 +286,10 @@ eine Runde". Stattdessen Standardaufträge, die immer bereitliegen:
 Beschränkung erzeugt bei begabten Kindern mehr Tiefe als zusätzliche Freiheit.
 
 **Expertenrollen mit Verantwortung:** Regel-Expertin, Balancing-Experte,
-Grafik-Chef, Playtest-Leitung. Rotierend. Wer eine Rolle hat, wird von den anderen
-gefragt statt von der Lehrkraft beschäftigt.
+Grafik-Chef, Playtest-Leitung — und im digitalen Teil die **Debugging-Sprechstunde**:
+Wer eine Scratch-Sache verstanden hat, ist für die Gruppe zuständig, nicht die
+Lehrkraft. Bei einem Laptop ist das keine Beschäftigungstherapie, sondern echter
+Bedarf.
 
 **Bewusst Frustration zulassen.** Ein Kurs, in dem alles auf Anhieb klappt, war
 für diese Zielgruppe zu leicht. Die Aufgabe der Lehrkraft ist, den Moment
@@ -232,50 +307,54 @@ Bewertungsgegenstand.
 
 ---
 
-## 8. Rückmeldung statt Noten
+## 10. Rückmeldung statt Noten
 
 - **Designtagebuch:** Jede Einheit drei Zeilen. *Was habe ich geändert? Warum?
   Was hat der Playtest gesagt?* Das Tagebuch ist Beleg für den Prozess, nicht das
   Spiel selbst.
 - **Playtest-Protokolle** sammeln — sichtbar machen, wie oft etwas umgebaut wurde.
-- **Kein Ranking, kein "bestes Spiel".** Bei der Messe stattdessen Publikumskarten
-  mit Kategorien: *Am meisten gelacht — Am kniffligsten — Am besten erklärt —
+- **Kein Ranking, kein "bestes Spiel".** Beim Spielefest stattdessen Karten mit
+  Kategorien: *Am meisten gelacht — Am kniffligsten — Am besten erklärt —
   Überraschendste Idee.* Jedes Spiel bekommt eine.
 
 ---
 
-## 9. Organisatorisches
+## 11. Organisatorisches
 
-**Gruppengröße:** 6–10. Unter 6 fehlen Playtest-Partner, über 10 wird die
-Feedbackrunde zu lang.
+**Gruppengröße:** 6–10. Unter 6 fehlen Playtest-Partner, über 10 wird sowohl die
+Feedbackrunde zu lang als auch die Laptop-Rotation zu dünn.
 
-**Raum:** Tische verschiebbar, eine Materialstation, Wandfläche für das
-Bausteine-Plakat und die Projektverträge.
+**Raum:** Tische verschiebbar, eine Materialstation, ein fester Laptop-Platz
+abseits der Bautische, Wandfläche für Bausteine-Plakat, Laufzettel und
+Projektverträge.
 
-**Technik:** 1 Gerät pro 2 Kinder. Scratch läuft im Browser und offline; für
-Schul-Tablets ist die Scratch-App eine Alternative. Wenn Accounts problematisch
-sind: Scratch offline nutzen und Projekte lokal auf einem Kurs-Stick sammeln.
+**Technik-Minimum:** Der eine Laptop mit installiertem Scratch-Offline-Editor.
+Sehr empfehlenswert: ein Beamer oder großer Bildschirm — ohne ihn fällt das
+Plenum-Livecoding weg und der digitale Teil verliert die Hälfte seiner Wirkung.
+Falls kein Beamer verfügbar ist: Laptop auf einen Tisch, Kinder im Halbkreis
+davor; funktioniert bis etwa acht Kinder.
 
-**Kosten:** Der analoge Baukasten liegt bei etwa 100–150 € einmalig und hält
-Jahre. Scratch und Twine sind kostenlos. Makey Makey ca. 50 € pro Set — zwei Sets
-reichen für Stationsbetrieb.
+**Datenschutz:** Durch den Verzicht auf Accounts entfällt das gesamte
+Einwilligungsverfahren. Der Scratch-Offline-Editor sendet nichts, alle Projekte
+bleiben lokal. Ein USB-Stick als wöchentliche Sicherung genügt — mehr Verwaltung
+braucht dieser Kurs nicht.
 
-**Elternabend:** Kurz erklären, warum ein "Spielekurs" kein Bespaßungsangebot ist.
-Das Argument, das zieht: Die Kinder schreiben Regelwerke, balancieren Zahlen,
-nehmen Feedback entgegen und liefern zu einem Termin. Nur der Gegenstand ist
-Spiel, die Arbeit nicht.
+**Kosten:** Analoger Baukasten einmalig ca. 100–150 €, hält Jahre. Scratch
+kostenlos. Makey Makey optional ca. 50 €.
 
 ---
 
-## 10. Stolpersteine
+## 12. Stolpersteine
 
 | Problem | Gegenmittel |
 |---|---|
 | "Mein Spiel ist perfekt, ich teste es nicht" | Playtest ist Pflichtstation, nicht Angebot |
 | Ein Kind dominiert das Tandem | Feste Rollen, Rollentausch per Timer |
-| Digitale Projekte werden immer größer und nie fertig | Ab Modul C gilt: erst spielbar, dann schön |
-| Nur Bildschirm-Interesse, analog wird abgelehnt | Modul A/B vor jedem Rechnerzugang — Reihenfolge ist nicht verhandelbar |
-| Kind bringt fertiges Roblox-Wissen mit und langweilt sich | Sofort in eine Expertenrolle + Constraint-Karten |
+| Streit um Laptop-Zeit | Laufzettel an der Wand, Zeiten sichtbar und gleich |
+| Am Laptop wird 15 min planlos herumprobiert | Ohne Papier-Scratch-Plan kein Zugang — einmal konsequent durchhalten |
+| Digitale Projekte werden immer größer und nie fertig | Ab Modul D gilt: erst spielbar, dann schön |
+| Nur Bildschirm-Interesse, analog wird abgelehnt | Module A–C vor jedem Laptopzugang — Reihenfolge ist nicht verhandelbar |
+| Kind bringt fertiges Scratch-Wissen mit | Debugging-Sprechstunde + Constraint-Karten |
 | Regelheft ist unverständlich | Fremdlesetest, nicht Lehrkraft-Korrektur |
 
 ---
@@ -283,4 +362,4 @@ Spiel, die Arbeit nicht.
 ## Weiterführend
 
 - **Stundenplanung im Detail:** [`STUNDENPLAN.md`](STUNDENPLAN.md)
-- **Material, Werkzeuge, Einkaufsliste:** [`MATERIAL.md`](MATERIAL.md)
+- **Material, Werkzeuge, Vorlagen:** [`MATERIAL.md`](MATERIAL.md)
