@@ -1,0 +1,573 @@
+<title>Spielewerkstatt 3/4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<style>
+:root{
+  --paper:#F5F3EE; --paper-2:#FFFDF8; --paper-3:#EDEAE2;
+  --ink:#22252E; --ink-soft:#5C6069; --ink-faint:#8C9098;
+  --rule:#D9D5CB; --grid:rgba(34,37,46,.055);
+  --accent:#1F4E79;
+  --m-analog:#A9721A; --m-unplugged:#3F7256; --m-digital:#1F4E79; --m-projekt:#8A3547;
+  --m-analog-bg:#F0E6D4; --m-unplugged-bg:#E0EBE3; --m-digital-bg:#DFE8F1; --m-projekt-bg:#F2E1E4;
+  --shadow:0 1px 2px rgba(34,37,46,.07),0 6px 18px -10px rgba(34,37,46,.22);
+  --sans:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --serif:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#15171D; --paper-2:#1C1F27; --paper-3:#22262F;
+  --ink:#E9E7E1; --ink-soft:#A2A6B0; --ink-faint:#767B86;
+  --rule:#2E323B; --grid:rgba(233,231,225,.045);
+  --accent:#82B4E2;
+  --m-analog:#DBA84E; --m-unplugged:#74B38C; --m-digital:#82B4E2; --m-projekt:#DC8698;
+  --m-analog-bg:#2E2718; --m-unplugged-bg:#1B2A21; --m-digital-bg:#18242F; --m-projekt-bg:#2D1B21;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 22px -12px rgba(0,0,0,.7);
+}}
+:root[data-theme="dark"]{
+  --paper:#15171D; --paper-2:#1C1F27; --paper-3:#22262F;
+  --ink:#E9E7E1; --ink-soft:#A2A6B0; --ink-faint:#767B86;
+  --rule:#2E323B; --grid:rgba(233,231,225,.045);
+  --accent:#82B4E2;
+  --m-analog:#DBA84E; --m-unplugged:#74B38C; --m-digital:#82B4E2; --m-projekt:#DC8698;
+  --m-analog-bg:#2E2718; --m-unplugged-bg:#1B2A21; --m-digital-bg:#18242F; --m-projekt-bg:#2D1B21;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 22px -12px rgba(0,0,0,.7);
+}
+
+*{box-sizing:border-box}
+body{
+  background-color:var(--paper);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:22px 22px;
+  color:var(--ink); font-family:var(--serif); font-size:17px; line-height:1.62;
+  margin:0; padding:0 20px 80px;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:860px;margin:0 auto}
+h1,h2,h3,h4{font-family:var(--sans);text-wrap:balance;line-height:1.12;margin:0}
+p{margin:0}
+a{color:var(--accent)}
+.lede{font-size:1.16rem;color:var(--ink-soft);max-width:62ch}
+.eyebrow{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint)}
+
+/* ---- Kopf ---- */
+header{padding:64px 0 40px;border-bottom:2px solid var(--ink)}
+.titel{font-size:clamp(2.6rem,7vw,4.2rem);font-weight:800;letter-spacing:-.025em;margin:14px 0 18px}
+.titel em{font-style:normal;color:var(--accent)}
+.fakten{display:flex;flex-wrap:wrap;gap:0;margin-top:30px;border:1px solid var(--rule);border-radius:3px;overflow:hidden;background:var(--paper-2)}
+.fakt{flex:1 1 150px;padding:13px 16px;border-right:1px solid var(--rule)}
+.fakt:last-child{border-right:0}
+.fakt dt{font-family:var(--mono);font-size:.64rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-faint)}
+.fakt dd{margin:3px 0 0;font-family:var(--sans);font-weight:600;font-size:1.05rem}
+
+section{padding:56px 0;border-bottom:1px solid var(--rule)}
+section > h2{font-size:1.9rem;font-weight:700;letter-spacing:-.015em;margin-bottom:8px}
+.sec-head{margin-bottom:30px}
+.sec-head p{margin-top:10px}
+.stack{display:flex;flex-direction:column;gap:20px}
+
+/* ---- Anforderungen ---- */
+.anforderungen{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0;border-top:1px solid var(--rule)}
+.anf{padding:20px 20px 22px 0;border-bottom:1px solid var(--rule)}
+.anf h3{font-size:1.08rem;font-weight:700;margin-bottom:6px}
+.anf p{font-size:.95rem;color:var(--ink-soft)}
+
+/* ---- Bausteine ---- */
+.bausteine{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.bst{
+  font-family:var(--sans);text-align:left;cursor:pointer;
+  background:var(--paper-2);border:1px solid var(--rule);border-top:4px solid var(--accent);
+  border-radius:2px;padding:16px 14px 18px;color:inherit;min-height:126px;
+  display:flex;flex-direction:column;gap:8px;transition:transform .16s ease,box-shadow .16s ease;
+}
+.bst:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.bst:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.bst .nr{font-family:var(--mono);font-size:.7rem;color:var(--ink-faint)}
+.bst .name{font-size:1.15rem;font-weight:700}
+.bst .frage{font-family:var(--serif);font-size:.92rem;color:var(--ink-soft);line-height:1.45}
+.bst[aria-pressed="true"]{background:var(--m-digital-bg)}
+.bst[aria-pressed="true"] .frage{color:var(--ink)}
+.hinweis{font-size:.9rem;color:var(--ink-faint);margin-top:14px;font-style:italic}
+
+/* ---- Jahresplan ---- */
+.legende{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:20px}
+.leg{display:flex;align-items:center;gap:7px;font-family:var(--mono);font-size:.72rem;letter-spacing:.04em;color:var(--ink-soft)}
+.swatch{width:13px;height:13px;border-radius:2px;flex:none}
+.plan{display:flex;flex-direction:column;gap:14px}
+.plan-modul{display:grid;grid-template-columns:88px 1fr;gap:14px;align-items:start}
+.plan-label{font-family:var(--mono);font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-faint);padding-top:9px;line-height:1.4}
+.plan-felder{display:flex;flex-wrap:wrap;gap:6px}
+.feld{
+  width:42px;height:42px;border-radius:2px;cursor:pointer;
+  font-family:var(--mono);font-size:.78rem;font-weight:500;
+  border:1px solid transparent;transition:transform .12s ease;
+  display:flex;align-items:center;justify-content:center;
+}
+.feld:hover{transform:scale(1.09)}
+.feld:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.feld[aria-current="true"]{box-shadow:inset 0 0 0 2px var(--ink)}
+.detail{margin-top:24px;background:var(--paper-2);border:1px solid var(--rule);border-radius:3px;padding:22px 24px;box-shadow:var(--shadow)}
+.detail-kopf{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.detail-nr{font-family:var(--mono);font-size:.82rem;padding:3px 8px;border-radius:2px;font-weight:500}
+.detail h3{font-size:1.35rem;font-weight:700}
+.detail dl{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;margin:0;font-size:.97rem}
+.detail dt{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);padding-top:5px}
+.detail dd{margin:0}
+
+/* ---- Betriebsarten ---- */
+.betrieb{border-top:1px solid var(--rule)}
+.betrieb-zeile{display:grid;grid-template-columns:170px 1fr;gap:20px;padding:16px 0;border-bottom:1px solid var(--rule)}
+.betrieb-zeile h3{font-size:1rem;font-weight:700;color:var(--accent)}
+.betrieb-zeile p{font-size:.95rem;color:var(--ink-soft)}
+.merksatz{
+  border-left:4px solid var(--accent);padding:4px 0 4px 22px;margin:8px 0 4px;
+  font-family:var(--sans);font-weight:600;font-size:1.3rem;line-height:1.32;letter-spacing:-.01em;
+}
+
+/* ---- Rechner ---- */
+.werkzeug{background:var(--paper-2);border:1px solid var(--rule);border-radius:3px;padding:24px;box-shadow:var(--shadow)}
+.regler{display:flex;flex-wrap:wrap;gap:24px;margin-bottom:22px}
+.regler label{display:flex;flex-direction:column;gap:6px;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint)}
+.regler input[type=range]{width:210px;accent-color:var(--accent)}
+.regler .wert{font-family:var(--sans);font-size:1.5rem;font-weight:700;color:var(--ink);letter-spacing:-.01em}
+.ergebnis{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:2px;overflow:hidden}
+.erg{background:var(--paper-2);padding:14px 16px}
+.erg dt{font-family:var(--mono);font-size:.63rem;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-faint)}
+.erg dd{margin:4px 0 0;font-family:var(--sans);font-size:1.7rem;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.erg dd small{font-size:.82rem;font-weight:600;color:var(--ink-soft);margin-left:3px}
+.urteil{margin-top:16px;font-size:.97rem;padding:12px 15px;border-radius:2px;border-left:3px solid}
+.urteil.gut{background:var(--m-unplugged-bg);border-color:var(--m-unplugged)}
+.urteil.knapp{background:var(--m-analog-bg);border-color:var(--m-analog)}
+.urteil.eng{background:var(--m-projekt-bg);border-color:var(--m-projekt)}
+
+/* ---- Constraint-Karte ---- */
+.karten-buehne{display:flex;gap:26px;align-items:center;flex-wrap:wrap}
+.karte{
+  width:210px;height:290px;flex:none;border-radius:8px;padding:22px 20px;
+  background:var(--paper-2);border:1px solid var(--rule);
+  box-shadow:var(--shadow);display:flex;flex-direction:column;justify-content:space-between;
+  transition:transform .4s cubic-bezier(.2,.7,.3,1);
+}
+.karte.dreht{transform:rotateY(12deg) translateY(-6px)}
+.karte .marke{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint)}
+.karte .text{font-family:var(--sans);font-size:1.42rem;font-weight:700;line-height:1.22;letter-spacing:-.015em;text-wrap:balance}
+.karte .fuss{font-family:var(--serif);font-style:italic;font-size:.85rem;color:var(--ink-soft);line-height:1.4}
+.knopf{
+  font-family:var(--sans);font-weight:600;font-size:.95rem;cursor:pointer;
+  background:var(--ink);color:var(--paper);border:0;border-radius:3px;padding:11px 20px;
+}
+.knopf:hover{opacity:.87}
+.knopf:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.knopf.leise{background:transparent;color:var(--ink-soft);border:1px solid var(--rule)}
+
+/* ---- Laufzettel ---- */
+.tab-huelle{overflow-x:auto;border:1px solid var(--rule);border-radius:3px;background:var(--paper-2)}
+table{border-collapse:collapse;width:100%;font-size:.93rem}
+th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--rule)}
+thead th{font-family:var(--mono);font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);font-weight:500;white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+.lz td{text-align:center;padding:6px}
+.lz td:first-child,.lz th:first-child{text-align:left}
+.lz input[type=text]{
+  font-family:var(--serif);font-size:.93rem;background:transparent;color:var(--ink);
+  border:0;border-bottom:1px dashed var(--rule);padding:3px 2px;width:150px;
+}
+.lz input[type=text]:focus{outline:0;border-bottom-color:var(--accent)}
+.lz input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);cursor:pointer}
+.zeile-werkzeug{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:14px}
+.zeile-werkzeug span{font-size:.86rem;color:var(--ink-faint)}
+
+/* ---- Tabellen allgemein ---- */
+.mkr{font-family:var(--mono);font-size:.72rem;white-space:nowrap;color:var(--ink-soft)}
+
+/* ---- Fuss ---- */
+footer{padding:44px 0 0;color:var(--ink-faint);font-size:.9rem}
+footer p{max-width:62ch}
+
+@media (max-width:640px){
+  .plan-modul{grid-template-columns:1fr;gap:6px}
+  .plan-label{padding-top:0}
+  .betrieb-zeile{grid-template-columns:1fr;gap:4px}
+  .anf{padding-right:0}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media print{
+  body{background:#fff;color:#000;font-size:11pt}
+  .nodruck{display:none}
+  section{border-bottom:0;padding:14px 0;break-inside:avoid}
+}
+</style>
+
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">Enrichment-Kurs · Grundschule Klasse 3/4 · Begabtenförderung</div>
+  <h1 class="titel">Kinder, die die <em>Regeln</em> machen</h1>
+  <p class="lede">Ein Spieleentwicklungskurs über ein Schuljahr — erst analog, dann digital,
+  am Ende ein eigenes Projekt. Ausgelegt auf einen einzigen Laptop und ohne einen einzigen Account.</p>
+  <dl class="fakten">
+    <div class="fakt"><dt>Umfang</dt><dd>30 × 90 min</dd></div>
+    <div class="fakt"><dt>Gruppe</dt><dd>6–10 Kinder</dd></div>
+    <div class="fakt"><dt>Alter</dt><dd>8–10 Jahre</dd></div>
+    <div class="fakt"><dt>Geräte</dt><dd>1 Laptop</dd></div>
+    <div class="fakt"><dt>Accounts</dt><dd>keine</dd></div>
+  </dl>
+</header>
+
+<section>
+  <div class="sec-head">
+    <h2>Warum ausgerechnet Spiele</h2>
+    <p class="lede">Game Design verlangt drei Dinge gleichzeitig, die im Regelunterricht selten
+    zusammenkommen — und das dritte ist für diese Zielgruppe das wichtigste.</p>
+  </div>
+  <div class="anforderungen">
+    <div class="anf">
+      <h3>Systemdenken</h3>
+      <p>Ein Spiel ist ein Regelsystem. Ändere eine Regel — was passiert mit allem anderen?</p>
+    </div>
+    <div class="anf">
+      <h3>Empathie</h3>
+      <p>Ein Spiel ist für <em>andere</em> gemacht. Was mir Spaß macht, ist nicht das Kriterium.</p>
+    </div>
+    <div class="anf">
+      <h3>Iteration</h3>
+      <p>Der erste Prototyp ist immer kaputt. Kein Misserfolg, sondern Methode — und der
+      Playtest sagt es, nicht die Lehrkraft.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <h2>Die fünf Bausteine</h2>
+    <p>Das Plakat, das den ganzen Kurs über hängen bleibt. Ohne Begriffe können Kinder über
+    Design nicht reden, nur „cool“ und „langweilig“ sagen. <span class="nodruck">Tippen Sie eine
+    Karte an, um die Leitfrage zu sehen, die dahintersteckt.</span></p>
+  </div>
+  <div class="bausteine" id="bausteine"></div>
+  <p class="hinweis">Baustein 3 ist der Kernbegriff des Kurses. „Habe ich eine echte Wahl?“
+  ist die Frage, an der sich fast jedes Kinderspiel entscheidet.</p>
+</section>
+
+<section>
+  <div class="sec-head">
+    <h2>Das Jahr auf einen Blick</h2>
+    <p>30 Doppelstunden in fünf Modulen. <span class="nodruck">Jedes Feld ist anklickbar.</span></p>
+  </div>
+  <div class="legende">
+    <span class="leg"><span class="swatch" style="background:var(--m-analog)"></span>analog</span>
+    <span class="leg"><span class="swatch" style="background:var(--m-unplugged)"></span>unplugged</span>
+    <span class="leg"><span class="swatch" style="background:var(--m-digital)"></span>digital · 1 Laptop</span>
+    <span class="leg"><span class="swatch" style="background:var(--m-projekt)"></span>eigenes Projekt</span>
+  </div>
+  <div class="plan" id="plan"></div>
+  <div class="detail" id="detail" aria-live="polite"></div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <h2>Ein Laptop ist kein Mangel</h2>
+    <p class="lede">Ein Gerät für acht Kinder ist keine Notlösung, die man wegorganisiert.
+    Zum Prinzip erhoben, macht es den Kurs besser.</p>
+  </div>
+  <p class="merksatz">Am Laptop wird nicht nachgedacht.<br>Am Laptop wird abgetippt und getestet.</p>
+  <p style="margin-top:18px;max-width:62ch">Gedacht, entworfen und gestritten wird auf Papier. Wer an den Laptop will,
+  bringt einen fertigen Plan mit. Das dreht die typische Falle des Informatikunterrichts um:
+  Kinder mit eigenem Gerät probieren planlos herum, bis irgendwas passiert. Kinder mit fünfzehn
+  wertvollen Minuten am einzigen Laptop planen vorher — und lernen dabei genau das, worum es
+  beim Programmieren geht.</p>
+  <div class="betrieb" style="margin-top:34px">
+    <div class="betrieb-zeile">
+      <h3>Plenum-Livecoding</h3>
+      <p>Laptop am Beamer. Die Gruppe programmiert gemeinsam, <em>ein</em> Kind ist die „Hand“ —
+      Rollenwechsel alle 5 Minuten. Für alles Neue und für gemeinsame Fehlerjagd.</p>
+    </div>
+    <div class="betrieb-zeile">
+      <h3>Laptop-Station</h3>
+      <p>Ein Tandem 15 Minuten mit klarer Auftragskarte, während alle anderen analog arbeiten.
+      Rotation nach sichtbarem Laufzettel.</p>
+    </div>
+    <div class="betrieb-zeile">
+      <h3>Papier-Scratch</h3>
+      <p>Ausgeschnittene Blockkarten werden auf Papier zum Programm geklebt. Funktioniert für
+      alle gleichzeitig und ist die Eintrittskarte zur Station.</p>
+    </div>
+    <div class="betrieb-zeile">
+      <h3>Unplugged</h3>
+      <p>Programmieren ganz ohne Gerät: Ein Kind ist Roboter und tut wörtlich nur, was auf den
+      Befehlskarten steht. Die ganze Informatik in einer Doppelstunde.</p>
+    </div>
+  </div>
+</section>
+
+<section class="nodruck">
+  <div class="sec-head">
+    <h2>Reicht die Laptop-Zeit?</h2>
+    <p>Die Rechnung, die über den digitalen Teil entscheidet. Schieben Sie Ihre echten Zahlen ein.</p>
+  </div>
+  <div class="werkzeug">
+    <div class="regler">
+      <label>Kinder im Kurs
+        <input type="range" id="r-kinder" min="4" max="14" step="1" value="8">
+        <span class="wert" id="w-kinder">8</span>
+      </label>
+      <label>Stationsphase je Einheit
+        <input type="range" id="r-phase" min="30" max="75" step="5" value="60">
+        <span class="wert" id="w-phase">60 min</span>
+      </label>
+    </div>
+    <dl class="ergebnis">
+      <div class="erg"><dt>Tandems</dt><dd id="e-tandems">4</dd></div>
+      <div class="erg"><dt>Minuten pro Tandem</dt><dd id="e-minuten">15<small>min</small></dd></div>
+      <div class="erg"><dt>In 6 Stationseinheiten</dt><dd id="e-gesamt">90<small>min</small></dd></div>
+    </dl>
+    <p class="urteil gut" id="e-urteil"></p>
+  </div>
+</section>
+
+<section class="nodruck">
+  <div class="sec-head">
+    <h2>Constraint-Karten</h2>
+    <p class="lede">Der wichtigste Differenzierungsgriff des Kurses. Wer schnell fertig ist,
+    bekommt keine Zusatzaufgabe, sondern eine Beschränkung — die erzeugt bei begabten
+    Kindern mehr Tiefe als zusätzliche Freiheit.</p>
+  </div>
+  <div class="karten-buehne">
+    <div class="karte" id="karte">
+      <span class="marke">Constraint · Spielewerkstatt</span>
+      <span class="text" id="karte-text">Ohne Würfel.</span>
+      <span class="fuss" id="karte-fuss">Zufall muss jetzt woanders herkommen — oder ganz verschwinden.</span>
+    </div>
+    <div>
+      <button class="knopf" id="karte-knopf">Neue Karte ziehen</button>
+      <p class="hinweis" style="max-width:34ch">Acht Karten im Stapel. Ausdrucken in A7,
+      laminieren, in eine Dose neben die Materialstation.</p>
+    </div>
+  </div>
+</section>
+
+<section class="nodruck">
+  <div class="sec-head">
+    <h2>Laufzettel für die Laptop-Station</h2>
+    <p>Hängt an der Wand und beendet die Fairness-Diskussion, bevor sie anfängt. Namen eintragen,
+    Besuche abhaken — Ihre Eingaben bleiben in diesem Browser gespeichert.</p>
+  </div>
+  <div class="tab-huelle">
+    <table class="lz" id="laufzettel"></table>
+  </div>
+  <div class="zeile-werkzeug">
+    <button class="knopf leise" id="lz-plus">Tandem hinzufügen</button>
+    <button class="knopf leise" id="lz-leeren">Häkchen zurücksetzen</button>
+    <span>Zum Ausdrucken: ⌘/Strg + P</span>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <h2>Stolpersteine</h2>
+    <p>Was in diesem Kurs erfahrungsgemäß schiefgeht — und der Griff, der es auffängt.</p>
+  </div>
+  <div class="tab-huelle">
+    <table>
+      <thead><tr><th>Problem</th><th>Gegenmittel</th></tr></thead>
+      <tbody>
+        <tr><td>„Mein Spiel ist perfekt, ich teste es nicht“</td><td>Playtest ist Pflichtstation, nicht Angebot</td></tr>
+        <tr><td>Ein Kind dominiert das Tandem</td><td>Feste Rollen, Rollentausch per Timer</td></tr>
+        <tr><td>Streit um Laptop-Zeit</td><td>Laufzettel an der Wand, Zeiten sichtbar und gleich</td></tr>
+        <tr><td>Am Laptop wird 15 min planlos herumprobiert</td><td>Ohne Papier-Scratch-Plan kein Zugang — einmal konsequent durchhalten</td></tr>
+        <tr><td>Digitale Projekte werden immer größer und nie fertig</td><td>Ab Modul D gilt: erst spielbar, dann schön</td></tr>
+        <tr><td>Nur Bildschirm-Interesse, analog wird abgelehnt</td><td>Module A–C vor jedem Laptopzugang — Reihenfolge nicht verhandelbar</td></tr>
+        <tr><td>Kind bringt fertiges Scratch-Wissen mit</td><td>Debugging-Sprechstunde für die Gruppe + Constraint-Karten</td></tr>
+        <tr><td>Regelheft ist unverständlich</td><td>Fremdlesetest, nicht Lehrkraft-Korrektur</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section style="border-bottom:0">
+  <div class="sec-head">
+    <h2>Die Schweigeregel</h2>
+  </div>
+  <p class="merksatz">Wer sein Spiel testen lässt, erklärt nichts und verteidigt nichts.<br>Nur zusehen und mitschreiben.</p>
+  <p style="margin-top:18px;max-width:62ch">Wenn die Testenden die Regel nicht verstehen, ist die Regel schuld — nicht der
+  Spieler. Für begabte Kinder mit starkem Erklärdrang ist das die härteste und lehrreichste
+  Übung des Kurses. Sie ist der Grund, warum das Playtest-Ritual ab Modul B jede Einheit gleich
+  abläuft: 15 Minuten bauen, 25 spielen lassen, 15 Feedback, 20 überarbeiten, 10 ins Designtagebuch.</p>
+</section>
+
+<footer>
+  <p><strong style="font-family:var(--sans)">Kostenrahmen:</strong> analoger Baukasten einmalig
+  100–150 € und hält Jahre · Scratch-Offline-Editor kostenlos, sendet nichts, braucht keinen
+  Account · Makey Makey optional 50 € · ein Beamer ist die einzige Ergänzung, für die es sich
+  zu kämpfen lohnt.</p>
+</footer>
+
+</div>
+
+<script>
+/* ---------- Die fünf Bausteine ---------- */
+const BAUSTEINE = [
+  ["Ziel","Was will ich erreichen? Und wann ist eigentlich Schluss?"],
+  ["Regeln","Was darf ich, was nicht? Wer sagt das?"],
+  ["Entscheidung","Habe ich eine echte Wahl — oder tue ich nur so?"],
+  ["Zufall","Wie viel Glück ist gut? Ab wann ist es egal, wie gut ich spiele?"],
+  ["Rückmeldung","Woher weiß ich, ob ich gerade gut spiele?"]
+];
+document.getElementById("bausteine").innerHTML = BAUSTEINE.map(([n,f],i)=>`
+  <button class="bst" aria-pressed="false">
+    <span class="nr">Baustein ${i+1}</span>
+    <span class="name">${n}</span>
+    <span class="frage">${f}</span>
+  </button>`).join("");
+document.querySelectorAll(".bst").forEach(b=>b.addEventListener("click",()=>{
+  b.setAttribute("aria-pressed", b.getAttribute("aria-pressed")==="true" ? "false":"true");
+}));
+
+/* ---------- Jahresplan ---------- */
+const MODULE = [
+  {id:"A", name:"Modul A<br>Was ist ein Spiel?", art:"analog"},
+  {id:"B", name:"Modul B<br>Prototyping", art:"analog"},
+  {id:"C", name:"Modul C<br>Ohne Strom", art:"unplugged"},
+  {id:"D", name:"Modul D<br>Am Laptop", art:"digital"},
+  {id:"E", name:"Modul E<br>Eigenes Projekt", art:"projekt"}
+];
+const EINHEITEN = [
+["A1","Spiele-Sezierstunde","Drei sehr unterschiedliche Spiele spielen und mit den fünf Bausteinen auseinandernehmen.","Das Bausteine-Plakat entsteht"],
+["A2","Glück oder Können","Würfelspiel gegen Reaktionsspiel. Leitfrage: Bei welchem ist es egal, wie gut du spielst?","Begriff „echte Entscheidung“"],
+["A3","Regel-Hack","Ein bekanntes Spiel, genau eine Regel ändern, sofort spielen. Ist es besser geworden?","Erste Ändern-Testen-Schleife"],
+["A4","Das langweiligste Spiel der Welt","Absichtlich ein schlechtes Spiel bauen — und begründen, warum es schlecht ist.","Designtagebuch startet"],
+["B1","Reskin","Mechanik unverändert lassen, nur das Thema tauschen.","Thema ≠ Mechanik verstanden"],
+["B2","Playtest-Ritual","Schweigeregel und Feedbackkarten einführen. Ab jetzt läuft jede Einheit gleich.","Das Ritual sitzt"],
+["B3","Ein-Blatt-Spiel","Alles muss auf ein DIN-A4-Blatt passen. Bauen und testen.","Erster eigener Prototyp"],
+["B4","Ein-Blatt-Spiel II","Zweite Testrunde, überarbeiten, Anleitung schreiben.","Fertiges Mini-Spiel"],
+["B5","18-Karten-Spiel","Blanko-Karten, Bleistift, Kombinationen erfinden.","Kartenprototyp"],
+["B6","Balancing","„Diese Karte ist zu stark.“ Die Kinder suchen selbst die Zahl, die es richtet.","Variablendenken, bevor es so heißt"],
+["B7","Kooperatives Spiel","Alle gewinnen oder alle verlieren. Eine ganz andere Zielstruktur.","Absprache als Mechanik"],
+["B8","Mini-Messe intern","Alle Spiele quer testen, Bestenliste der Ideen.","Übergang zum digitalen Teil"],
+["C1","Der Roboter","Ein Kind ist Roboter und tut nur, was auf den Befehlskarten steht — gnadenlos wörtlich.","Befehl ≠ Absicht"],
+["C2","Schleife und Bedingung","Der Parcours wird zu lang für Einzelbefehle. Die Gruppe erfindet „wiederhole“ und „wenn“.","Kontrollstrukturen selbst hergeleitet"],
+["C3","Fehlersuche","Ein Programm mit genau einem Fehler. Danach: Programme gegenseitig sabotieren.","Debugging als Spiel"],
+["C4","Papier-Scratch","Scratch-Blöcke als Karten ausschneiden und das erste Programm aufkleben.","Eintrittskarte zur Laptop-Station"],
+["D1","Scratch-Einstieg","Plenum am Beamer. Die Gruppe diktiert, ein Kind ist die Hand — Wechsel alle 5 min.","Figur reagiert auf Tasten"],
+["D2","Kollision und Punkte","Plenum. Gemeinsam entsteht ein winziges Sammelspiel, das alle kennen.","Grundlage des Kursspiels"],
+["D3","Station startet","Parallelbetrieb: analog arbeiten, dazu vier Tandems je 15 min am Laptop.","Jedes Tandem einmal am Gerät"],
+["D4","Variablen und Schwierigkeit","Tempo, Gegnerzahl, Zeit. Die Zahl im Code macht dasselbe wie die Zahl auf der Karte.","Balancing im Code"],
+["D5","Kursspiel bauen","Jedes Tandem verantwortet eine Figur oder eine Mechanik im gemeinsamen Projekt.","Bausteine des Kursspiels"],
+["D6","Zusammenbau und Playtest","Das Kursspiel am Beamer, alle spielen reihum, Feedbackkarten wie im analogen Teil.","Spielbares Kursspiel"],
+["E1","Pitch","90 Sekunden pro Idee vor der Gruppe. Nur wer gepitcht hat, darf bauen.","Projektvertrag unterschrieben"],
+["E2","Bauphase I","Rohbau. Hässlich ist ausdrücklich erlaubt. Laptop-Station läuft mit.","Spielbarer Kern"],
+["E3","Pflicht-Playtest I","Fremde testen, die Erfinderin schweigt.","Änderungsliste"],
+["E4","Bauphase II","Umbau nach Testergebnis.","Zweite Fassung"],
+["E5","Pflicht-Playtest II","Zweiter Durchlauf mit neuen Testern.","Feinschliff-Liste"],
+["E6","Anleitung und Politur","Ein Regelheft, das ohne den Erfinder funktioniert.","Fremdlesetest bestanden"],
+["E7","Generalprobe","Tische, Abläufe, Erklärrollen.","Alles spielbar"],
+["E8","Spielefest","Kursintern, dazu wenn möglich eine Parallelklasse als Testgruppe. Keine Bühne.","Kursabschluss"]
+];
+const planEl = document.getElementById("plan");
+planEl.innerHTML = MODULE.map(m=>{
+  const felder = EINHEITEN.map((e,i)=>[e,i]).filter(([e])=>e[0][0]===m.id);
+  return `<div class="plan-modul">
+    <div class="plan-label">${m.name}</div>
+    <div class="plan-felder">${felder.map(([e,i])=>
+      `<button class="feld" data-i="${i}" style="background:var(--m-${m.art}-bg);color:var(--m-${m.art})" title="${e[1]}">${e[0]}</button>`
+    ).join("")}</div>
+  </div>`;
+}).join("");
+
+const detailEl = document.getElementById("detail");
+function zeigeEinheit(i){
+  const [nr,titel,kern,ergebnis] = EINHEITEN[i];
+  const art = MODULE.find(m=>m.id===nr[0]).art;
+  detailEl.innerHTML = `
+    <div class="detail-kopf">
+      <span class="detail-nr" style="background:var(--m-${art}-bg);color:var(--m-${art})">${nr}</span>
+      <h3>${titel}</h3>
+    </div>
+    <dl>
+      <dt>Kern</dt><dd>${kern}</dd>
+      <dt>Ergebnis</dt><dd>${ergebnis}</dd>
+    </dl>`;
+  document.querySelectorAll(".feld").forEach(f=>
+    f.setAttribute("aria-current", f.dataset.i === String(i) ? "true":"false"));
+}
+document.querySelectorAll(".feld").forEach(f=>
+  f.addEventListener("click",()=>zeigeEinheit(+f.dataset.i)));
+zeigeEinheit(12);
+
+/* ---------- Stationsrechner ---------- */
+const rk=document.getElementById("r-kinder"), rp=document.getElementById("r-phase");
+function rechne(){
+  const kinder=+rk.value, phase=+rp.value;
+  const tandems=Math.ceil(kinder/2);
+  const min=Math.floor(phase/tandems);
+  document.getElementById("w-kinder").textContent=kinder;
+  document.getElementById("w-phase").textContent=phase+" min";
+  document.getElementById("e-tandems").textContent=tandems;
+  document.getElementById("e-minuten").innerHTML=min+'<small>min</small>';
+  document.getElementById("e-gesamt").innerHTML=(min*6)+'<small>min</small>';
+  const u=document.getElementById("e-urteil");
+  if(min>=15){u.className="urteil gut";
+    u.textContent=`Komfortabel. ${min} Minuten reichen, um einen vorbereiteten Plan umzusetzen und einmal zu testen. Jedes Tandem ist in jeder Stationseinheit am Gerät.`;}
+  else if(min>=11){u.className="urteil knapp";
+    u.textContent=`Knapp, aber tragfähig — vorausgesetzt, der Papier-Scratch-Plan liegt fertig auf dem Tisch. Ohne Vorbereitung verpufft diese Zeit.`;}
+  else {u.className="urteil eng";
+    u.textContent=`Zu eng für sinnvolles Arbeiten. Besser: eine Runde über zwei Einheiten strecken, sodass die Hälfte der Tandems diese Woche und die andere Hälfte nächste Woche ${Math.floor(phase/Math.ceil(tandems/2))} Minuten bekommt.`;}
+}
+rk.addEventListener("input",rechne); rp.addEventListener("input",rechne); rechne();
+
+/* ---------- Constraint-Karten ---------- */
+const KARTEN=[
+  ["Ohne Würfel.","Zufall muss jetzt woanders herkommen — oder ganz verschwinden."],
+  ["Höchstens 5 Minuten Spielzeit.","Was ist wirklich nötig? Der Rest fliegt raus."],
+  ["Ohne ein einziges Wort Text.","Symbole müssen die Regel tragen. Härter, als es klingt."],
+  ["Man verliert nie ganz.","Wie bleibt es spannend, wenn niemand rausfliegt?"],
+  ["Nur eine einzige Regel.","Die Königsdisziplin. Meistens scheitert es — produktiv."],
+  ["Für 2 und für 4 Personen.","Dieselbe Mechanik, zwei Balancings."],
+  ["Auch für einen Fünfjährigen spielbar.","Zwingt zur echten Zielgruppenfrage."],
+  ["Passt in eine Streichholzschachtel.","Material wird zur Designentscheidung."]
+];
+let letzte=0;
+const karte=document.getElementById("karte");
+document.getElementById("karte-knopf").addEventListener("click",()=>{
+  let i; do{i=Math.floor(Math.random()*KARTEN.length)}while(i===letzte&&KARTEN.length>1);
+  letzte=i;
+  karte.classList.add("dreht");
+  setTimeout(()=>{
+    document.getElementById("karte-text").textContent=KARTEN[i][0];
+    document.getElementById("karte-fuss").textContent=KARTEN[i][1];
+    karte.classList.remove("dreht");
+  },180);
+});
+
+/* ---------- Laufzettel ---------- */
+const LZ_KEY="spielewerkstatt-laufzettel";
+const SPALTEN=["D3","D4","D5","D6","E2","E4"];
+let lz;
+try{ lz=JSON.parse(localStorage.getItem(LZ_KEY)||"null"); }catch(e){ lz=null; }
+if(!lz) lz={namen:["Tandem 1","Tandem 2","Tandem 3","Tandem 4"],haken:{}};
+function sichern(){ try{ localStorage.setItem(LZ_KEY,JSON.stringify(lz)); }catch(e){} }
+function zeichneLZ(){
+  const t=document.getElementById("laufzettel");
+  t.innerHTML=`<thead><tr><th>Tandem</th>${SPALTEN.map(s=>`<th>${s}</th>`).join("")}<th>Besuche</th></tr></thead>
+  <tbody>${lz.namen.map((n,r)=>{
+    const anzahl=SPALTEN.filter(s=>lz.haken[r+"-"+s]).length;
+    return `<tr>
+      <td><input type="text" data-r="${r}" value="${n.replace(/"/g,"&quot;")}" aria-label="Name Tandem ${r+1}"></td>
+      ${SPALTEN.map(s=>`<td><input type="checkbox" data-k="${r}-${s}" ${lz.haken[r+"-"+s]?"checked":""} aria-label="${n}, Einheit ${s}"></td>`).join("")}
+      <td class="mkr">${anzahl} / ${SPALTEN.length}</td>
+    </tr>`;}).join("")}</tbody>`;
+  t.querySelectorAll('input[type=checkbox]').forEach(c=>c.addEventListener("change",()=>{
+    lz.haken[c.dataset.k]=c.checked; sichern(); zeichneLZ();
+  }));
+  t.querySelectorAll('input[type=text]').forEach(c=>c.addEventListener("input",()=>{
+    lz.namen[+c.dataset.r]=c.value; sichern();
+  }));
+}
+document.getElementById("lz-plus").addEventListener("click",()=>{
+  lz.namen.push("Tandem "+(lz.namen.length+1)); sichern(); zeichneLZ();
+});
+document.getElementById("lz-leeren").addEventListener("click",()=>{
+  lz.haken={}; sichern(); zeichneLZ();
+});
+zeichneLZ();
+</script>
