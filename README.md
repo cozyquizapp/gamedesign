@@ -12,6 +12,8 @@ Cloud-Dienste.
 | [`STUNDENPLAN.md`](STUNDENPLAN.md) | 30 Doppelstunden im Überblick + Kurzvariante mit 15 |
 | [`MATERIAL.md`](MATERIAL.md) | Baukasten, Ausstattung, Kosten, Vorlagen zum Ausdrucken |
 
+**Chat-Variante:** [`KI-CHAT-LEITFADEN.md`](KI-CHAT-LEITFADEN.md) — derselbe Baukasten als geführtes Gespräch, mit fertigem Startprompt.
+
 **Kurzfassung:** 4 Einheiten Spielanalyse → 8 Einheiten analoges Prototyping mit
 festem Playtest-Ritual → 4 Einheiten Programmieren ohne Gerät → 6 Einheiten
 Scratch im Plenum- und Stationsbetrieb am einen Laptop → 8 Einheiten eigenes

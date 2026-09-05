@@ -1,7 +1,7 @@
 <title>Der Spiele-Baukasten</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=IBM+Plex+Mono:wght@400;600&family=Nunito:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=IBM+Plex+Mono:wght@400;600&family=Nunito:wght@400;600;700;800&display=swap">
 <style>
 :root{
   --bg:#FFFCF5; --karte:#FFFFFF; --karte-2:#FBF6EA;
@@ -9,6 +9,7 @@
   --linie:#E4DCCB;
   --rot:#DB4A24; --teal:#1E7A72; --gelb:#E8A600; --lila:#6B4E9E;
   --rot-bg:#FBE7E0; --teal-bg:#DEEEEC; --gelb-bg:#FBF0D5; --lila-bg:#EBE5F5;
+  --erzaehler-bg:#221F2B; --erzaehler-tinte:#FFF9EC;
   --schatten:0 2px 0 var(--linie),0 10px 24px -14px rgba(34,31,43,.4);
   --display:"Baloo 2","Comic Sans MS",system-ui,sans-serif;
   --text:"Nunito","Segoe UI",system-ui,sans-serif;
@@ -20,6 +21,7 @@
   --linie:#332F3D;
   --rot:#FF8259; --teal:#5CC0B5; --gelb:#F5C43F; --lila:#AE93E0;
   --rot-bg:#33201A; --teal-bg:#13302D; --gelb-bg:#33280E; --lila-bg:#251E33;
+  --erzaehler-bg:#2A2635; --erzaehler-tinte:#FFF9EC;
   --schatten:0 2px 0 var(--linie),0 12px 28px -16px rgba(0,0,0,.85);
 }}
 :root[data-theme="dark"]{
@@ -28,86 +30,96 @@
   --linie:#332F3D;
   --rot:#FF8259; --teal:#5CC0B5; --gelb:#F5C43F; --lila:#AE93E0;
   --rot-bg:#33201A; --teal-bg:#13302D; --gelb-bg:#33280E; --lila-bg:#251E33;
+  --erzaehler-bg:#2A2635; --erzaehler-tinte:#FFF9EC;
   --schatten:0 2px 0 var(--linie),0 12px 28px -16px rgba(0,0,0,.85);
 }
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--tinte);font-family:var(--text);font-size:17px;line-height:1.6;margin:0;padding:0 18px 70px;-webkit-font-smoothing:antialiased}
-.huelle{max-width:900px;margin:0 auto}
+.huelle{max-width:920px;margin:0 auto}
 h1,h2,h3{font-family:var(--display);line-height:1.1;margin:0;text-wrap:balance}
 p{margin:0}
 button{font-family:inherit}
 
-/* Kopf */
-header{padding:34px 0 20px}
-.marke{display:flex;align-items:center;gap:12px}
-.logo{width:38px;height:38px;flex:none}
-.marke h1{font-size:1.7rem;font-weight:800;letter-spacing:-.02em}
-.marke p{font-size:.92rem;color:var(--tinte-weich)}
+header{padding:28px 0 16px;display:flex;align-items:center;gap:13px}
+.logo{width:44px;height:44px;flex:none}
+header h1{font-size:1.6rem;font-weight:800;letter-spacing:-.02em}
+header p{font-size:.9rem;color:var(--tinte-weich)}
 
-/* Bauleiste */
-.bauleiste{display:flex;flex-wrap:wrap;gap:7px;margin:22px 0 26px;min-height:36px}
-.teil{
-  display:inline-flex;align-items:center;gap:7px;padding:6px 13px 6px 9px;border-radius:99px;
-  font-size:.86rem;font-weight:700;background:var(--karte);border:2px solid var(--linie);
-  animation:rein .28s cubic-bezier(.2,1.2,.4,1);
+/* Erzähler */
+.erzaehler{
+  background:var(--erzaehler-bg);color:var(--erzaehler-tinte);border-radius:18px;
+  padding:22px 26px 24px;box-shadow:var(--schatten);position:relative;margin-bottom:14px;
 }
-.teil b{font-family:var(--mono);font-size:.66rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--tinte-blass)}
-@keyframes rein{from{transform:scale(.8) translateY(6px);opacity:0}to{transform:none;opacity:1}}
-.teil.leer{background:transparent;border-style:dashed;color:var(--tinte-blass);font-weight:400}
+.erzaehler::after{content:"";position:absolute;left:44px;bottom:-13px;width:26px;height:14px;
+  background:var(--erzaehler-bg);clip-path:polygon(0 0,100% 0,30% 100%)}
+.erzaehler .kopf{font-family:var(--mono);font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;opacity:.55;margin-bottom:10px}
+.satz{font-family:var(--display);font-size:clamp(1.05rem,2.4vw,1.32rem);font-weight:600;line-height:1.45;margin-bottom:7px;animation:auf .5s ease both}
+.satz:last-child{margin-bottom:0}
+.satz.neu{color:var(--gelb)}
+@keyframes auf{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 22px}
+.chip{font-size:.76rem;font-weight:700;padding:4px 11px;border-radius:99px;background:var(--karte);border:1.5px solid var(--linie);color:var(--tinte-weich)}
 
 /* Frage */
-.frage-karte{background:var(--karte);border:2px solid var(--linie);border-radius:16px;padding:26px 26px 30px;box-shadow:var(--schatten)}
-.schritt-zahl{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--tinte-blass)}
-.frage-karte h2{font-size:clamp(1.6rem,4.5vw,2.2rem);font-weight:800;letter-spacing:-.02em;margin:8px 0 6px}
+.frage-karte{background:var(--karte);border:2px solid var(--linie);border-radius:18px;padding:26px 26px 30px;box-shadow:var(--schatten)}
+.schritt-zahl{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--tinte-blass)}
+.frage-karte h2{font-size:clamp(1.55rem,4.4vw,2.1rem);font-weight:800;letter-spacing:-.02em;margin:8px 0 6px}
 .unterfrage{color:var(--tinte-weich);font-size:1rem;max-width:56ch}
-.optionen{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-top:24px}
+.optionen{display:grid;grid-template-columns:repeat(auto-fit,minmax(228px,1fr));gap:13px;margin-top:24px}
 .opt{
   text-align:left;cursor:pointer;background:var(--karte-2);border:2px solid var(--linie);
-  border-radius:13px;padding:16px 16px 18px;color:inherit;
-  display:flex;flex-direction:column;gap:5px;transition:transform .14s ease,border-color .14s ease,background .14s ease;
+  border-radius:15px;padding:0 0 16px;color:inherit;overflow:hidden;
+  display:flex;flex-direction:column;transition:transform .15s ease,border-color .15s ease;
 }
-.opt:hover{transform:translateY(-3px);border-color:var(--tinte-blass)}
-.opt:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
-.opt .sym{font-size:1.5rem;line-height:1}
-.opt .titel{font-family:var(--display);font-size:1.22rem;font-weight:700}
-.opt .info{font-size:.9rem;color:var(--tinte-weich);line-height:1.42}
-.opt.gewaehlt{background:var(--teal-bg);border-color:var(--teal)}
+.opt:hover{transform:translateY(-4px) rotate(-.5deg);border-color:var(--tinte-blass)}
+.opt:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+.opt.gewaehlt{border-color:var(--teal)}
+.portrait{width:100%;height:132px;display:block;background:#F4EFE2}
+.opt-text{padding:13px 16px 0;display:flex;flex-direction:column;gap:5px}
+.opt .sym{font-size:1.45rem;line-height:1;padding:14px 16px 0}
+.opt .titel{font-family:var(--display);font-size:1.2rem;font-weight:700;line-height:1.15}
+.opt .info{font-size:.92rem;color:var(--tinte-weich);line-height:1.44}
+.opt .mini{font-family:var(--mono);font-size:.68rem;letter-spacing:.03em;color:var(--tinte-blass);margin-top:4px;line-height:1.4}
 .steuer{display:flex;gap:10px;align-items:center;margin-top:24px;flex-wrap:wrap}
-.knopf{cursor:pointer;border-radius:10px;padding:11px 20px;font-weight:700;font-size:.96rem;border:2px solid var(--linie);background:var(--karte);color:var(--tinte)}
+.knopf{cursor:pointer;border-radius:11px;padding:11px 20px;font-weight:800;font-size:.96rem;border:2px solid var(--linie);background:var(--karte);color:var(--tinte)}
 .knopf:hover{border-color:var(--tinte-blass)}
 .knopf:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
-.knopf.stark{background:var(--rot);border-color:var(--rot);color:#fff}
-:root[data-theme="dark"] .knopf.stark,
-:root:not([data-theme="light"]) .knopf.stark{color:#221F2B}
-@media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .knopf.stark{color:#fff}}
-.fortschritt{flex:1;min-width:140px;height:8px;border-radius:99px;background:var(--linie);overflow:hidden}
-.fortschritt i{display:block;height:100%;background:var(--teal);border-radius:99px;transition:width .3s ease}
+.knopf.stark{background:var(--rot);border-color:var(--rot);color:#FFF9EC}
+.fortschritt{flex:1;min-width:130px;height:9px;border-radius:99px;background:var(--linie);overflow:hidden}
+.fortschritt i{display:block;height:100%;background:var(--teal);border-radius:99px;transition:width .35s ease}
 
 /* Bauplan */
 .bauplan{display:none}
 .bauplan.an{display:block}
-.plan-kopf{background:var(--karte);border:2px solid var(--linie);border-radius:16px;padding:26px;box-shadow:var(--schatten);margin-bottom:16px}
-.plan-kopf .stempel{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--rot);font-weight:600}
-.namensfeld{font-family:var(--display);font-size:clamp(1.7rem,5vw,2.6rem);font-weight:800;letter-spacing:-.02em;background:transparent;border:0;border-bottom:3px dashed var(--linie);color:var(--tinte);width:100%;padding:4px 0;margin:8px 0 4px}
+.plan-kopf{background:var(--karte);border:2px solid var(--linie);border-radius:18px;padding:24px 26px;box-shadow:var(--schatten);margin-bottom:16px;display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+.plan-kopf .held{width:104px;height:104px;border-radius:14px;background:#F4EFE2;flex:none}
+.plan-kopf .txt{flex:1;min-width:240px}
+.stempel{font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--rot);font-weight:600}
+.namensfeld{font-family:var(--display);font-size:clamp(1.6rem,4.6vw,2.4rem);font-weight:800;letter-spacing:-.02em;background:transparent;border:0;border-bottom:3px dashed var(--linie);color:var(--tinte);width:100%;padding:4px 0;margin:6px 0 4px}
 .namensfeld:focus{outline:0;border-bottom-color:var(--rot)}
-.erfinder{font-family:var(--text);font-size:.98rem;background:transparent;border:0;border-bottom:2px dashed var(--linie);color:var(--tinte-weich);padding:3px 0;width:min(100%,340px)}
+.erfinder{font-family:var(--text);font-size:.96rem;background:transparent;border:0;border-bottom:2px dashed var(--linie);color:var(--tinte-weich);padding:3px 0;width:min(100%,320px)}
 .erfinder:focus{outline:0;border-bottom-color:var(--rot)}
 
-.bloecke{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px}
-.block{background:var(--karte);border:2px solid var(--linie);border-radius:16px;padding:22px 24px 24px}
+.bloecke{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.block{background:var(--karte);border:2px solid var(--linie);border-radius:18px;padding:22px 24px 24px}
 .block.weit{grid-column:1/-1}
-.block h3{font-size:1.25rem;font-weight:800;display:flex;align-items:center;gap:9px;margin-bottom:12px}
-.block h3 .pille{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;padding:3px 8px;border-radius:99px}
+.block h3{font-size:1.24rem;font-weight:800;display:flex;align-items:center;gap:9px;margin-bottom:13px;flex-wrap:wrap}
+.pille{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;padding:3px 9px;border-radius:99px}
+.geschichte{background:var(--gelb-bg);border:2px solid var(--gelb);border-radius:18px;padding:24px 26px;margin-bottom:16px}
+.geschichte h3{color:var(--tinte)}
+.geschichte p{font-family:var(--display);font-size:1.12rem;font-weight:600;line-height:1.5}
+.geschichte p + p{margin-top:9px}
 .liste{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
-.liste li{display:flex;gap:11px;align-items:baseline;font-size:.98rem}
-.liste .menge{font-family:var(--mono);font-weight:600;font-size:.88rem;color:var(--rot);min-width:2.6em;flex:none;font-variant-numeric:tabular-nums}
-ol.schritte{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:10px;font-size:.98rem}
-ol.schritte::marker{font-weight:700}
-.regel-titel{font-family:var(--display);font-weight:700;font-size:1rem;display:block;margin-bottom:2px}
-.regel{padding:12px 0;border-bottom:1px dashed var(--linie)}
+.liste li{display:flex;gap:11px;align-items:baseline;font-size:.97rem}
+.menge{font-family:var(--mono);font-weight:600;font-size:.87rem;color:var(--rot);min-width:2.6em;flex:none;font-variant-numeric:tabular-nums}
+ol.schritte{margin:0;padding-left:1.25em;display:flex;flex-direction:column;gap:10px;font-size:.97rem}
+.regel{padding:11px 0;border-bottom:1px dashed var(--linie)}
 .regel:last-child{border-bottom:0}
-.regel p{font-size:.98rem;color:var(--tinte-weich)}
-.brett-huelle{background:var(--karte-2);border-radius:12px;padding:16px;overflow-x:auto}
+.regel-titel{font-family:var(--display);font-weight:700;font-size:1rem;display:block;margin-bottom:2px}
+.regel p{font-size:.97rem;color:var(--tinte-weich)}
+.spruch{background:var(--karte-2);border:2px solid var(--linie);border-radius:10px;padding:11px 14px;font-family:var(--display);font-weight:600;font-size:.98rem}
+.spruchliste{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:9px}
+.brett-huelle{background:var(--karte-2);border-radius:14px;padding:16px;overflow-x:auto}
 .brett-huelle svg{display:block;margin:0 auto;max-width:100%;height:auto}
 .brett-huelle svg rect,.brett-huelle svg ellipse{stroke:var(--tinte);stroke-width:1.8}
 .brett-huelle svg .fn{fill:var(--karte)}
@@ -119,19 +131,18 @@ ol.schritte::marker{font-weight:700}
 .brett-huelle svg .verbinder{fill:none;stroke:var(--linie);stroke-width:3}
 .brett-huelle svg .bt{font-family:var(--display);font-size:20px;font-weight:800;fill:var(--tinte)}
 .brett-huelle svg .bs{font-family:var(--text);font-size:13px;fill:var(--tinte-weich)}
-.brett-huelle svg .bx{font-family:var(--text);font-size:12px;fill:var(--tinte-weich)}
-.brett-bei{font-size:.86rem;color:var(--tinte-blass);margin-top:10px;text-align:center}
-.stellschraube{background:var(--gelb-bg);border-left:4px solid var(--gelb);border-radius:0 8px 8px 0;padding:12px 15px;font-size:.95rem}
-.testauftrag{background:var(--lila-bg);border:2px dashed var(--lila);border-radius:14px;padding:20px 24px;margin-top:16px}
+.brett-bei{font-size:.85rem;color:var(--tinte-blass);margin-top:10px;text-align:center}
+.stellschraube{background:var(--gelb-bg);border-left:4px solid var(--gelb);border-radius:0 8px 8px 0;padding:11px 15px;font-size:.94rem}
+.testauftrag{background:var(--lila-bg);border:2px dashed var(--lila);border-radius:18px;padding:20px 24px;margin-top:16px}
 .testauftrag h3{color:var(--lila);margin-bottom:8px}
 .fuss-steuer{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;align-items:center}
-.fuss-steuer span{font-size:.88rem;color:var(--tinte-blass)}
+.fuss-steuer span{font-size:.87rem;color:var(--tinte-blass)}
 
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @media print{
   body{background:#fff;color:#000;padding:0}
-  .nodruck,header,.bauleiste{display:none!important}
-  .block,.plan-kopf{border:1px solid #999;box-shadow:none;break-inside:avoid}
+  .nodruck,header,.chips{display:none!important}
+  .block,.plan-kopf,.geschichte{border:1px solid #999;box-shadow:none;break-inside:avoid}
   .bloecke{display:block}
   .block{margin-bottom:12px}
 }
@@ -140,19 +151,19 @@ ol.schritte::marker{font-weight:700}
 <div class="huelle">
 
 <header class="nodruck">
-  <div class="marke">
-    <svg class="logo" viewBox="0 0 40 40" aria-hidden="true">
-      <rect x="3" y="12" width="22" height="22" rx="4" fill="var(--gelb)" stroke="var(--tinte)" stroke-width="2.4"/>
-      <circle cx="10" cy="19" r="2" fill="var(--tinte)"/><circle cx="18" cy="27" r="2" fill="var(--tinte)"/>
-      <path d="M22 4 L36 4 L36 18 Z" fill="var(--teal)" stroke="var(--tinte)" stroke-width="2.4" stroke-linejoin="round"/>
-    </svg>
-    <div>
-      <h1>Der Spiele-Baukasten</h1>
-      <p>Sieben Entscheidungen — und du hast einen Bauplan.</p>
-    </div>
+  <svg class="logo" viewBox="0 0 44 44" aria-hidden="true">
+    <rect x="4" y="15" width="24" height="24" rx="5" fill="#E8A600" stroke="#221F2B" stroke-width="2.6"/>
+    <circle cx="12" cy="23" r="2.2" fill="#221F2B"/><circle cx="20" cy="31" r="2.2" fill="#221F2B"/>
+    <path d="M24 4 L40 4 L40 20 Z" fill="#1E7A72" stroke="#221F2B" stroke-width="2.6" stroke-linejoin="round"/>
+  </svg>
+  <div>
+    <h1>Der Spiele-Baukasten</h1>
+    <p>Sieben Entscheidungen — und deine Geschichte wird ein Spiel.</p>
   </div>
-  <div class="bauleiste" id="bauleiste"></div>
 </header>
+
+<div class="erzaehler nodruck" id="erzaehler" aria-live="polite"></div>
+<div class="chips nodruck" id="chips"></div>
 
 <main>
   <div class="frage-karte nodruck" id="frage"></div>
@@ -160,87 +171,149 @@ ol.schritte::marker{font-weight:700}
 </main>
 
 </div>
-
 <script>
-/* ============ Daten ============ */
-const THEMEN = {
-  weltraum:{name:"Weltraum",sym:"🚀",figur:"Rakete",zielAkk:"den Heimatplaneten",zielDat:"zum Heimatplaneten",falle:"Meteoritenschauer",bonus:"Treibstoff",tausch:"Beamer",feindNom:"das Alien",feindDat:"dem Alien",farben:"Schwarz, Silber, Neongrün"},
-  dschungel:{name:"Dschungel",sym:"🌴",figur:"Forscherin",zielAkk:"den verlorenen Tempel",zielDat:"zum verlorenen Tempel",falle:"Treibsand",bonus:"Bananen",tausch:"freche Papagei",feindNom:"die Schlange",feindDat:"der Schlange",farben:"Grün, Braun, Knallgelb"},
-  piraten:{name:"Piraten",sym:"🏴‍☠️",figur:"Schiff",zielAkk:"die Schatzinsel",zielDat:"zur Schatzinsel",falle:"Strudel",bonus:"Goldmünzen",tausch:"Enterhaken",feindNom:"der Krake",feindDat:"dem Kraken",farben:"Blau, Sandbeige, Rot"},
-  drachen:{name:"Drachen",sym:"🐉",figur:"Drachenbaby",zielAkk:"die Drachenhöhle",zielDat:"zur Drachenhöhle",falle:"Ritterfalle",bonus:"Edelsteine",tausch:"Zauberspruch",feindNom:"der Ritter",feindDat:"dem Ritter",farben:"Lila, Gold, Dunkelrot"},
-  schule:{name:"Schule",sym:"🎒",figur:"Schulranzen",zielAkk:"den Pausenhof",zielDat:"zum Pausenhof",falle:"Hausaufgaben-Falle",bonus:"Fleißpunkte",tausch:"Radiergummi-Tausch",feindNom:"der Vertretungslehrer",feindDat:"dem Vertretungslehrer",farben:"Kreideweiß, Tafelgrün, Filzstiftrot"},
-  tiere:{name:"Waldtiere",sym:"🦔",figur:"Igel",zielAkk:"den warmen Bau",zielDat:"zum warmen Bau",falle:"Pfütze",bonus:"Nüsse",tausch:"Verstecken",feindNom:"der Fuchs",feindDat:"dem Fuchs",farben:"Herbstbraun, Moosgrün, Orange"}
+/* ============ Die Helden (gezeichnet) ============ */
+const P = {
+  schrott:`<g stroke="#221F2B" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+    <line x1="100" y1="14" x2="100" y2="30"/><circle cx="100" cy="11" r="5" fill="#DB4A24"/>
+    <rect x="70" y="30" width="60" height="44" rx="9" fill="#B9C4CE"/>
+    <rect x="62" y="80" width="16" height="11" rx="5" fill="#8E9BA8"/>
+    <rect x="122" y="80" width="16" height="11" rx="5" fill="#8E9BA8"/>
+    <rect x="78" y="76" width="44" height="40" rx="7" fill="#8E9BA8"/>
+    <circle cx="100" cy="52" r="14" fill="#FFFDF5"/><circle cx="100" cy="52" r="7" fill="#221F2B"/>
+    <path d="M78 40 l6 5 -6 4" fill="none"/><path d="M88 96 h24" stroke-width="2.4"/>
+    </g><circle cx="95" cy="47" r="2.6" fill="#FFFDF5"/><circle cx="100" cy="88" r="3" fill="#E8A600"/>`,
+  dschungel:`<g stroke="#221F2B" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+    <circle cx="100" cy="72" r="27" fill="#F2C79C"/>
+    <path d="M73 46 q27 -22 54 0" fill="#6B4423"/>
+    <ellipse cx="100" cy="44" rx="45" ry="10" fill="#C8A25B"/>
+    <path d="M79 44 q21 -26 42 0 z" fill="#C8A25B"/>
+    <path d="M86 100 l14 12 14 -12 z" fill="#DB4A24"/>
+    <path d="M88 78 q12 10 24 0" fill="none"/>
+    </g><circle cx="90" cy="68" r="3.6" fill="#221F2B"/><circle cx="110" cy="68" r="3.6" fill="#221F2B"/>
+    <path d="M40 118 q14 -30 28 -6" stroke="#3F7256" stroke-width="7" fill="none" stroke-linecap="round"/>`,
+  piraten:`<g stroke="#221F2B" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+    <circle cx="100" cy="70" r="27" fill="#F2C79C"/>
+    <path d="M72 58 q28 -30 56 0 z" fill="#DB4A24"/>
+    <circle cx="89" cy="64" r="8" fill="#221F2B"/><path d="M74 56 l52 4" stroke-width="2.6"/>
+    <path d="M88 82 q12 12 24 0 q-12 4 -24 0z" fill="#FFFDF5"/>
+    <circle cx="75" cy="80" r="5" fill="none" stroke="#E8A600" stroke-width="3"/>
+    <ellipse cx="150" cy="106" rx="16" ry="11" fill="#9A8F86"/><circle cx="160" cy="98" r="5" fill="#9A8F86"/>
+    <path d="M134 106 q-12 4 -8 12" fill="none" stroke-width="2.4"/>
+    </g><circle cx="112" cy="64" r="3.6" fill="#221F2B"/><circle cx="156" cy="104" r="2.2" fill="#221F2B"/>
+    <circle cx="82" cy="52" r="2.4" fill="#FFFDF5"/><circle cx="116" cy="48" r="2.4" fill="#FFFDF5"/>`,
+  drachen:`<g stroke="#221F2B" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M128 78 q34 -22 30 10 q-2 22 -30 8z" fill="#A8D8A8"/>
+    <ellipse cx="100" cy="90" rx="31" ry="25" fill="#57A05A"/>
+    <circle cx="100" cy="58" r="25" fill="#6FBB72"/>
+    <path d="M86 36 l4 -14 8 12z" fill="#EFE3BC"/><path d="M114 36 l-4 -14 -8 12z" fill="#EFE3BC"/>
+    <ellipse cx="100" cy="68" rx="15" ry="10" fill="#8FD292"/>
+    <path d="M70 96 q-22 6 -14 20" fill="none"/>
+    </g><circle cx="90" cy="54" r="6" fill="#FFFDF5"/><circle cx="111" cy="54" r="6" fill="#FFFDF5"/>
+    <circle cx="91" cy="55" r="3" fill="#221F2B"/><circle cx="112" cy="55" r="3" fill="#221F2B"/>
+    <circle cx="95" cy="68" r="2" fill="#221F2B"/><circle cx="106" cy="68" r="2" fill="#221F2B"/>
+    <circle cx="128" cy="62" r="4" fill="#CFE3F2"/><circle cx="139" cy="55" r="6" fill="#CFE3F2"/>`,
+  monster:`<g stroke="#221F2B" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M60 112 q-8 -70 40 -70 q48 0 40 70 q-40 8 -80 0z" fill="#8E6BC8"/>
+    <path d="M58 82 q-16 6 -10 18" fill="none"/><path d="M142 82 q16 6 10 18" fill="none"/>
+    <path d="M86 88 q14 16 28 0 z" fill="#3E2A63"/>
+    </g><circle cx="82" cy="62" r="9" fill="#FFFDF5" stroke="#221F2B" stroke-width="3"/>
+    <circle cx="100" cy="52" r="11" fill="#FFFDF5" stroke="#221F2B" stroke-width="3"/>
+    <circle cx="119" cy="62" r="9" fill="#FFFDF5" stroke="#221F2B" stroke-width="3"/>
+    <circle cx="83" cy="63" r="4" fill="#221F2B"/><circle cx="101" cy="54" r="5" fill="#221F2B"/><circle cx="120" cy="63" r="4" fill="#221F2B"/>
+    <path d="M95 88 l5 8 5 -8z" fill="#FFFDF5"/>
+    <circle cx="74" cy="96" r="4" fill="#6B4E9E"/><circle cx="126" cy="102" r="5" fill="#6B4E9E"/>`,
+  nachtwald:`<g stroke="#221F2B" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M64 82 l8 -20 8 14 8 -22 9 18 8 -22 9 20 8 -16 8 20 q-32 12 -66 8z" fill="#6B4A2F"/>
+    <circle cx="100" cy="86" r="24" fill="#C99A6B"/>
+    <path d="M124 96 l24 -10 v18z" fill="#F5D97B"/><rect x="146" y="82" width="14" height="24" rx="4" fill="#5E5866"/>
+    </g><circle cx="92" cy="84" r="3.4" fill="#221F2B"/><circle cx="109" cy="84" r="3.4" fill="#221F2B"/>
+    <circle cx="100" cy="98" r="5" fill="#221F2B"/>
+    <circle cx="46" cy="34" r="2.5" fill="#E8A600"/><circle cx="164" cy="30" r="2" fill="#E8A600"/><circle cx="30" cy="66" r="2" fill="#E8A600"/>`
 };
+const held = k => `<svg class="portrait" viewBox="0 0 200 132" preserveAspectRatio="xMidYMid meet" aria-hidden="true">${P[k]}</svg>`;
 
-const ETIKETT = {ziel:"Ziel",feld:"Feld",mechanik:"Zug",glueck:"Glück",trick:"Trick",thema:"Thema",groesse:"Größe"};
-
-const SCHRITTE = [
-  {
-    key:"ziel", frage:"Wie gewinnt man dein Spiel?",
-    unter:"Das ist die wichtigste Entscheidung. Alles andere hängt daran.",
-    optionen:[
-      {id:"rennen",sym:"🏁",titel:"Wettrennen",info:"Wer zuerst am Ziel ist, gewinnt."},
-      {id:"sammeln",sym:"💎",titel:"Sammeln",info:"Wer am Ende am meisten hat, gewinnt."},
-      {id:"fangen",sym:"👻",titel:"Fangen",info:"Einer jagt, die anderen fliehen."},
-      {id:"zusammen",sym:"🤝",titel:"Alle zusammen",info:"Ihr gewinnt gemeinsam — oder verliert gemeinsam."}
-    ]
+/* ============ Die Welten ============ */
+const WELTEN = {
+  schrott:{
+    titel:"Schrottplatz der Roboter",
+    kurz:"RX-9, ein Putzroboter mit nur einem Auge. Sein Akku hält noch — vielleicht — bis heute Abend.",
+    intro:["Auf dem Schrottplatz war seit Jahren kein Mensch mehr.","Nur die alten Roboter sind noch da. Und ihre Akkus werden leer."],
+    held1:"RX-9", heldLang:"RX-9, der einäugige Putzroboter",
+    boeseNom:"der Magnetkran", boeseDat:"dem Magnetkran",
+    zielAkk:"die letzte Steckdose", zielDat:"zur letzten Steckdose",
+    wegBild:"über rostige Förderbänder und quer durch einen Berg aus Schrott",
+    falle:"Ölpfütze", falleSatz:"Überall stehen Ölpfützen. Wer hineinrutscht, dreht sich einmal im Kreis.",
+    bonus:"Batterien", tausch:"Magnetgreifer", tauschSatz:"Mit dem Magnetgreifer zieht man anderen die Batterien aus dem Bauch.",
+    farben:"Rost-Orange, Metallgrau und Warnstreifen-Gelb",
+    sprueche:["Akku leer! Eine Runde aufladen.","Ein Funke springt über — zieh sofort noch einmal.","Der Magnetkran greift nach dir: drei Felder zurück.","Du findest eine alte Batterie. Sammle sie ein."]
   },
-  {
-    key:"feld", frage:"Worauf wird gespielt?",
-    unter:"Nicht jedes Spielfeld passt zu jedem Ziel. Du siehst nur, was funktioniert.",
-    optionen:[
-      {id:"rundkurs",sym:"⭕",titel:"Rundkurs",info:"Ein Weg im Kreis, wie beim Mensch-ärgere-dich-nicht.",wenn:["rennen","fangen","zusammen"]},
-      {id:"raster",sym:"▦",titel:"Karo-Feld",info:"Ein Gitter aus Kästchen, wie ein Schachbrett.",wenn:["sammeln","fangen","zusammen"]},
-      {id:"pfad",sym:"🛤️",titel:"Weg mit Abzweigungen",info:"Ein Pfad, bei dem man sich entscheiden muss.",wenn:["rennen","zusammen","sammeln"]},
-      {id:"kein",sym:"🃏",titel:"Gar kein Brett",info:"Nur Karten auf dem Tisch. Schnell gebastelt!",wenn:["sammeln","fangen"]}
-    ]
+  dschungel:{
+    titel:"Der Dschungel, der zurückschlägt",
+    kurz:"Ida, die kleinste Forscherin der Welt. Sie hat eine Machete, ein Käsebrot und keine Angst.",
+    intro:["Der goldene Tempel steht seit tausend Jahren im Dschungel.","Alle, die ihn gesucht haben, sind zurückgekommen — nur ohne Schuhe."],
+    held1:"Ida", heldLang:"Ida, die kleinste Forscherin der Welt",
+    boeseNom:"die Riesenschlange Zischa", boeseDat:"der Riesenschlange Zischa",
+    zielAkk:"den goldenen Tempel", zielDat:"zum goldenen Tempel",
+    wegBild:"über Lianen, morsche Brücken und den Rücken eines schlafenden Krokodils",
+    falle:"Treibsand", falleSatz:"Der Boden ist nicht überall Boden. Manches ist Treibsand.",
+    bonus:"Bananen", tausch:"frecher Papagei", tauschSatz:"Ein frecher Papagei klaut den anderen die Bananen aus der Hand.",
+    farben:"Dschungelgrün, Schlammbraun und Knallgelb",
+    sprueche:["Eine Liane reißt! Zwei Felder zurück.","Zischa schläft. Schleich dich vorbei und zieh noch einmal.","Treibsand! Setze eine Runde aus.","Der Papagei bringt dir eine Banane."]
   },
-  {
-    key:"mechanik", frage:"Was machst du, wenn du dran bist?",
-    unter:"Der Motor deines Spiels. Das passiert in jedem einzelnen Zug.",
-    optionen:[
-      {id:"wuerfel",sym:"🎲",titel:"Würfeln und ziehen",info:"Würfel entscheidet, wie weit du kommst.",wenn:["rundkurs","pfad","raster"]},
-      {id:"karte",sym:"🎴",titel:"Eine Karte ausspielen",info:"Du hast Karten auf der Hand und wählst eine.",wenn:["rundkurs","pfad","raster","kein"]},
-      {id:"setzen",sym:"📍",titel:"Etwas hinlegen",info:"Du legst ein Plättchen oder eine Figur auf ein Feld.",wenn:["raster","kein","pfad"]},
-      {id:"geschick",sym:"🎯",titel:"Zielen und schnippen",info:"Du musst treffen, stapeln oder schnippen.",wenn:["rundkurs","raster","kein"]}
-    ]
+  piraten:{
+    titel:"Die Bucht der verlorenen Schätze",
+    kurz:"Käpt'n Käthe und ihre Ratte Butterkeks. Käthe kann nicht schwimmen. Butterkeks schon.",
+    intro:["Die Karte war in einer Flasche. Die Flasche war in einem Fisch.","Der Fisch war Käpt'n Käthes Abendessen."],
+    held1:"Käpt'n Käthe", heldLang:"Käpt'n Käthe und ihre Ratte Butterkeks",
+    boeseNom:"der Krake Grummel", boeseDat:"dem Kraken Grummel",
+    zielAkk:"die Schatzinsel", zielDat:"zur Schatzinsel",
+    wegBild:"über offenes Meer, vorbei an drei Riffen und einem sehr unfreundlichen Felsen",
+    falle:"Strudel", falleSatz:"In der Bucht drehen sich Strudel. Wer hineingerät, wird zurückgespült.",
+    bonus:"Goldmünzen", tausch:"Enterhaken", tauschSatz:"Mit dem Enterhaken holt man sich das Gold vom Nachbarschiff.",
+    farben:"Meerblau, Sandbeige und Piratenrot",
+    sprueche:["Flaute! Eine Runde liegen bleiben.","Rückenwind — zwei Felder extra.","Grummel taucht auf: gib eine Goldmünze ab.","Butterkeks findet etwas Glänzendes. Nimm eine Münze."]
   },
-  {
-    key:"glueck", frage:"Wie viel Glück soll dabei sein?",
-    unter:"Ganz viel Glück ist lustig. Ganz wenig Glück ist knifflig. Du entscheidest.",
-    optionen:[
-      {id:"viel",sym:"🍀",titel:"Ganz viel Glück",info:"Auch kleine Geschwister können gewinnen."},
-      {id:"misch",sym:"⚖️",titel:"Halb und halb",info:"Glück hilft, aber Nachdenken hilft mehr."},
-      {id:"koennen",sym:"🧠",titel:"Fast nur Können",info:"Wer klug plant, gewinnt. Für Knobelfans."}
-    ]
+  drachen:{
+    titel:"Die letzte Drachenhöhle",
+    kurz:"Fump, ein Drachenbaby. Feuer spucken kann er noch nicht — nur niesen. Aber richtig laut.",
+    intro:["Fump ist aus dem Nest gefallen.","Der Weg nach Hause ist weit, und es wird schon dunkel."],
+    held1:"Fump", heldLang:"Fump, das Drachenbaby",
+    boeseNom:"Ritter Rüdiger", boeseDat:"Ritter Rüdiger",
+    zielAkk:"die warme Drachenhöhle", zielDat:"zur warmen Drachenhöhle",
+    wegBild:"über den Berg, durch die Wolken und an drei Burgen vorbei",
+    falle:"Ritterfalle", falleSatz:"Ritter Rüdiger hat überall Netze gespannt.",
+    bonus:"Edelsteine", tausch:"Zauberspruch", tauschSatz:"Ein Zauberspruch — und der Edelstein liegt plötzlich bei dir.",
+    farben:"Drachengrün, Gold und Dunkelrot",
+    sprueche:["Fump niest. Alle anderen müssen ein Feld zurück!","Aufwind — flieg drei Felder weiter.","Ein Netz! Eine Runde zappeln.","Ein Edelstein glitzert im Moos. Nimm ihn mit."]
   },
-  {
-    key:"trick", frage:"Was ist dein besonderer Trick?",
-    unter:"Die eine Regel, die dein Spiel anders macht als alle anderen.",
-    optionen:[
-      {id:"falle",sym:"⚠️",titel:"Fallen-Felder",info:"Auf manchen Feldern passiert etwas Fieses."},
-      {id:"abkuerzung",sym:"↗️",titel:"Geheime Abkürzung",info:"Ein Weg, der viel schneller ist — aber riskant.",wenn_feld:["rundkurs","pfad","raster"]},
-      {id:"tausch",sym:"🔄",titel:"Klauen und Tauschen",info:"Du darfst anderen etwas wegnehmen.",wenn_ziel:["sammeln","rennen","fangen"]},
-      {id:"bonus",sym:"⭐",titel:"Bonus-Karten",info:"Sammle Karten, die dir Extra-Kräfte geben."},
-      {id:"zeitdruck",sym:"⏳",titel:"Sanduhr",info:"Alles muss schnell gehen. Wer trödelt, verliert."},
-      {id:"helfen",sym:"🫱",titel:"Helfen erlaubt",info:"Ihr dürft euch gegenseitig retten.",wenn_ziel:["zusammen"]}
-    ]
+  monster:{
+    titel:"Die Monsterschule",
+    kurz:"Glibb, ein Monster mit drei Augen. Gut im Brüllen, schlecht in Mathe, hungrig auf Pause.",
+    intro:["In der Monsterschule gibt es Brüllen als Fach und Kreischen als Hausaufgabe.","Glibb ist gut in beidem. Aber die große Pause dauert nur zehn Minuten."],
+    held1:"Glibb", heldLang:"Glibb, das dreiäugige Monster",
+    boeseNom:"Direktor Knurr", boeseDat:"Direktor Knurr",
+    zielAkk:"den Pausenhof", zielDat:"zum Pausenhof",
+    wegBild:"durch endlose Flure, an der Turnhalle vorbei und einmal quer durch die Mensa",
+    falle:"Hausaufgaben-Falle", falleSatz:"Auf manchen Feldern liegen Hausaufgaben herum. Wer hineintritt, muss sie machen.",
+    bonus:"Schleimpunkte", tausch:"Radiergummi-Klau", tauschSatz:"Ein schneller Griff ins Mäppchen — und der Schleimpunkt gehört dir.",
+    farben:"Monsterlila, Schleimgrün und Kreideweiß",
+    sprueche:["Direktor Knurr kommt um die Ecke! Eine Runde aussetzen.","Die Stunde fällt aus — zieh noch einmal.","Du hast die Hausaufgaben vergessen: zwei Felder zurück.","Ein Schleimpunkt für dich. Gut gebrüllt!"]
   },
-  {
-    key:"thema", frage:"Worum geht es in deinem Spiel?",
-    unter:"Jetzt bekommt alles einen Namen. Die Regeln bleiben genau gleich — nur die Verpackung ändert sich.",
-    optionen:Object.entries(THEMEN).map(([id,t])=>({id,sym:t.sym,titel:t.name,info:"Farben: "+t.farben}))
-  },
-  {
-    key:"groesse", frage:"Wie groß soll es werden?",
-    unter:"Danach richtet sich, wie viel du basteln musst.",
-    optionen:[
-      {id:"klein",sym:"🐜",titel:"Klein und schnell",info:"2 Spieler, etwa 10 Minuten. In einer Doppelstunde fertig."},
-      {id:"mittel",sym:"🐕",titel:"Mittel",info:"3–4 Spieler, etwa 20 Minuten. Der übliche Fall."},
-      {id:"gross",sym:"🐘",titel:"Groß",info:"4–6 Spieler, etwa 30 Minuten. Braucht zwei Doppelstunden."}
-    ]
+  nachtwald:{
+    titel:"Der Wald bei Nacht",
+    kurz:"Piks, ein Igel mit einer viel zu großen Taschenlampe. Die Batterien reichen nicht bis nach Hause.",
+    intro:["Es ist dunkel geworden, viel zu schnell.","Piks hat sich verlaufen — und der Wald macht Geräusche, die er noch nie gehört hat."],
+    held1:"Piks", heldLang:"Piks, der Igel mit der Taschenlampe",
+    boeseNom:"der Fuchs Schnauf", boeseDat:"dem Fuchs Schnauf",
+    zielAkk:"den warmen Bau", zielDat:"zum warmen Bau",
+    wegBild:"unter Wurzeln hindurch, über den kalten Bach und am Ohr einer schlafenden Eule vorbei",
+    falle:"Pfütze", falleSatz:"Im Dunkeln sieht man die Pfützen nicht. Nasse Igel sind langsame Igel.",
+    bonus:"Nüsse", tausch:"Versteckspiel", tauschSatz:"Wer sich gut versteckt, darf einem anderen eine Nuss abnehmen.",
+    farben:"Nachtblau, Moosgrün und Laternengelb",
+    sprueche:["Ein Ast knackt. Alle erschrecken — eine Runde stillhalten.","Der Mond kommt raus: zwei Felder weiter.","Platsch! Pfütze. Ein Feld zurück.","Du findest eine Nuss unter dem Laub."]
   }
-];
+};
 
 const MASSE = {
   klein:{spieler:"2",felder:20,karten:12,dauer:"10",figuren:2,plaettchen:10},
@@ -248,79 +321,169 @@ const MASSE = {
   gross:{spieler:"4–6",felder:44,karten:30,dauer:"30",figuren:6,plaettchen:24}
 };
 
-/* Zugregel je Mechanik × Glück */
-const ZUGREGEL = {
-  wuerfel:{
-    viel:"Du würfelst einmal und ziehst so viele Felder weiter. Fertig — der nächste ist dran.",
-    misch:"Du würfelst mit zwei Würfeln und darfst dir einen aussuchen. Der andere zählt nicht.",
-    koennen:"Zu Beginn deines Zuges würfelst du dreimal und legst die Zahlen vor dich. Du entscheidest, in welcher Reihenfolge du sie benutzt."
+const SCHRITTE = [
+  { key:"welt", frage:"Wo spielt deine Geschichte?",
+    unter:"Such dir einen Helden aus. Er hat schon ein Problem — du machst ein Spiel daraus.",
+    optionen:Object.entries(WELTEN).map(([id,w])=>({id,titel:w.titel,info:w.kurz}))
   },
-  karte:{
-    viel:"Du ziehst eine Karte vom Stapel und musst sie sofort spielen. Kein Aussuchen!",
-    misch:"Du hast drei Karten auf der Hand und spielst eine davon aus. Danach ziehst du wieder auf drei nach.",
-    koennen:"Du hast fünf Karten auf der Hand und ziehst erst nach, wenn du keine mehr hast. Denk gut nach, wann du welche ausspielst."
+  { key:"ziel", frage:"Wie gewinnt man?",
+    unter:"Die wichtigste Entscheidung. Alles andere hängt daran.",
+    optionen:[
+      {id:"rennen",sym:"🏁",titel:"Wer zuerst da ist",info:"Ein Wettrennen. Alle wollen dasselbe, und nur einer kommt zuerst an.",mini:"Ziel: als Erster ankommen"},
+      {id:"sammeln",sym:"💎",titel:"Wer am meisten hat",info:"Überall liegt etwas herum. Am Ende wird gezählt.",mini:"Ziel: die meisten Teile"},
+      {id:"fangen",sym:"👻",titel:"Einer jagt alle",info:"Einer ist der Böse. Die anderen rennen um ihr Leben.",mini:"Ziel: nicht gefangen werden"},
+      {id:"zusammen",sym:"🤝",titel:"Alle gegen das Spiel",info:"Keiner gewinnt allein. Entweder schafft ihr es gemeinsam — oder keiner.",mini:"Ziel: gemeinsam ankommen"}
+    ]
   },
-  setzen:{
-    viel:"Du ziehst ein Plättchen aus dem Beutel und legst es auf ein freies Feld deiner Wahl.",
-    misch:"Du wählst eines von drei offen ausliegenden Plättchen und legst es auf ein freies Feld.",
-    koennen:"Du hast alle deine Plättchen offen vor dir und legst eines auf ein freies Feld. Wer vorausdenkt, gewinnt."
+  { key:"feld", frage:"Wie sieht die Welt auf dem Tisch aus?",
+    unter:"Du siehst nur, was zu deinem Ziel passt.",
+    optionen:[
+      {id:"rundkurs",sym:"⭕",titel:"Einmal rundherum",info:"Ein Weg im Kreis. Immer im Kreis. Für immer.",mini:"wie Mensch-ärgere-dich-nicht",wenn:["rennen","fangen","zusammen"]},
+      {id:"raster",sym:"▦",titel:"Ein großes Karo-Feld",info:"Kästchen an Kästchen. Man kann überall hin — auch dahin, wo man nicht hinsollte.",mini:"wie ein Schachbrett",wenn:["sammeln","fangen","zusammen"]},
+      {id:"pfad",sym:"🛤️",titel:"Ein Weg mit Abzweigungen",info:"Links oder rechts? Der kurze Weg ist gefährlich, der lange dauert.",mini:"Weg mit Gabelungen",wenn:["rennen","zusammen","sammeln"]},
+      {id:"kein",sym:"🃏",titel:"Gar kein Brett",info:"Nur Karten auf dem Tisch. In zwanzig Minuten gebastelt.",mini:"nur Karten",wenn:["sammeln","fangen"]}
+    ]
   },
-  geschick:{
-    viel:"Du schnippst einmal und nimmst, was dabei herauskommt. Auch danebenschießen gehört dazu.",
-    misch:"Du hast zwei Versuche und darfst dir das bessere Ergebnis aussuchen.",
-    koennen:"Du sagst vorher an, was du triffst. Nur wenn es klappt, zählt es — dafür doppelt."
+  { key:"mechanik", frage:"Was machst du, wenn du dran bist?",
+    unter:"Der Motor deines Spiels. Das passiert in jedem einzelnen Zug.",
+    optionen:[
+      {id:"wuerfel",sym:"🎲",titel:"Würfeln und losziehen",info:"Der Würfel bestimmt. Manchmal ist er gemein.",mini:"1 Würfel, ziehen",wenn:["rundkurs","pfad","raster"]},
+      {id:"karte",sym:"🎴",titel:"Eine Karte ausspielen",info:"Du hast Karten in der Hand. Keiner weiß, welche.",mini:"Handkarten ausspielen",wenn:["rundkurs","pfad","raster","kein"]},
+      {id:"setzen",sym:"📍",titel:"Etwas hinlegen",info:"Einmal gelegt, bleibt es liegen. Überleg gut.",mini:"Plättchen platzieren",wenn:["raster","kein","pfad"]},
+      {id:"geschick",sym:"🎯",titel:"Zielen und schnippen",info:"Kein Würfel, keine Karte — nur deine Hand.",mini:"schnippen, treffen, stapeln",wenn:["rundkurs","raster","kein"]}
+    ]
+  },
+  { key:"glueck", frage:"Wie viel Glück soll dabei sein?",
+    unter:"Viel Glück ist lustig. Wenig Glück ist knifflig. Beides ist richtig.",
+    optionen:[
+      {id:"viel",sym:"🍀",titel:"Ganz viel Glück",info:"Auch die kleine Schwester kann gewinnen. Und wird es tun.",mini:"kaum Auswahl"},
+      {id:"misch",sym:"⚖️",titel:"Halb und halb",info:"Glück hilft. Nachdenken hilft mehr.",mini:"immer 2–3 Möglichkeiten"},
+      {id:"koennen",sym:"🧠",titel:"Fast nur Können",info:"Hier gewinnt niemand aus Versehen.",mini:"viel Auswahl, alles sichtbar"}
+    ]
+  },
+  { key:"trick", frage:"Was ist dein fieser Trick?",
+    unter:"Die eine Regel, die dein Spiel anders macht als jedes andere.",
+    optionen:[
+      {id:"falle",sym:"⚠️",titel:"Fallen",info:"Auf manchen Feldern passiert etwas richtig Gemeines.",mini:"jedes 5. Feld ist eine Falle"},
+      {id:"abkuerzung",sym:"↗️",titel:"Die geheime Abkürzung",info:"Viel schneller. Und viel riskanter.",mini:"2 Felder verbunden",wenn_feld:["rundkurs","pfad","raster"]},
+      {id:"tausch",sym:"🔄",titel:"Klauen erlaubt",info:"Du darfst anderen wegnehmen, was sie gesammelt haben. Ja, wirklich.",mini:"1× pro Zug klauen",wenn_ziel:["sammeln","rennen","fangen"]},
+      {id:"bonus",sym:"⭐",titel:"Extra-Kräfte",info:"Karten, die dir eine Fähigkeit geben. Einmal im Spiel.",mini:"Bonuskarten sammeln"},
+      {id:"zeitdruck",sym:"⏳",titel:"Die Sanduhr",info:"Dreißig Sekunden. Wer trödelt, hat Pech.",mini:"Sanduhr pro Zug"},
+      {id:"helfen",sym:"🫱",titel:"Ihr dürft euch retten",info:"Steckt jemand fest, gibt ein anderer seinen Zug ab.",mini:"1× Rettung pro Spieler",wenn_ziel:["zusammen"]}
+    ]
+  },
+  { key:"groesse", frage:"Wie groß soll es werden?",
+    unter:"Danach richtet sich, wie viel du basteln musst.",
+    optionen:[
+      {id:"klein",sym:"🐜",titel:"Klein und schnell",info:"2 Spieler, zehn Minuten. Heute anfangen, heute fertig.",mini:"20 Felder"},
+      {id:"mittel",sym:"🐕",titel:"Mittelgroß",info:"3–4 Spieler, zwanzig Minuten. Der übliche Fall.",mini:"32 Felder"},
+      {id:"gross",sym:"🐘",titel:"Riesig",info:"4–6 Spieler, eine halbe Stunde. Dafür brauchst du zwei Termine.",mini:"44 Felder"}
+    ]
   }
+];
+
+const ZUGREGEL = {
+  wuerfel:{ viel:"Du würfelst einmal und ziehst so viele Felder weiter. Fertig — der Nächste ist dran.",
+    misch:"Du würfelst mit zwei Würfeln und suchst dir einen aus. Der andere zählt nicht.",
+    koennen:"Du würfelst dreimal und legst die Zahlen vor dich hin. Du entscheidest, in welcher Reihenfolge du sie benutzt." },
+  karte:{ viel:"Du ziehst eine Karte und musst sie sofort spielen. Kein Aussuchen!",
+    misch:"Du hast drei Karten auf der Hand und spielst eine aus. Danach ziehst du wieder auf drei nach.",
+    koennen:"Du hast fünf Karten und ziehst erst nach, wenn du keine mehr hast. Überleg gut, wann du welche ausspielst." },
+  setzen:{ viel:"Du ziehst ein Plättchen aus dem Beutel und legst es auf ein freies Feld.",
+    misch:"Du wählst eines von drei offen liegenden Plättchen und legst es auf ein freies Feld.",
+    koennen:"Alle deine Plättchen liegen offen vor dir. Du legst eines. Wer vorausdenkt, gewinnt." },
+  geschick:{ viel:"Du schnippst einmal und nimmst, was dabei herauskommt. Danebenschießen gehört dazu.",
+    misch:"Du hast zwei Versuche und darfst dir das bessere Ergebnis aussuchen.",
+    koennen:"Du sagst vorher an, was du triffst. Nur dann zählt es — dafür doppelt." }
 };
 
 /* ============ Zustand ============ */
 const wahl = {};
 let schrittNr = 0;
+const saetze = [];
 
-function moeglich(o){
-  if(o.wenn && !o.wenn.includes(wahl.ziel)) return false;
-  if(o.wenn_ziel && !o.wenn_ziel.includes(wahl.ziel)) return false;
-  if(o.wenn_feld && !o.wenn_feld.includes(wahl.feld)) return false;
-  return true;
-}
 function optionenFuer(s){
-  if(s.key==="feld") return s.optionen.filter(o=>o.wenn.includes(wahl.ziel));
+  if(s.key==="feld")     return s.optionen.filter(o=>o.wenn.includes(wahl.ziel));
   if(s.key==="mechanik") return s.optionen.filter(o=>o.wenn.includes(wahl.feld));
-  return s.optionen.filter(moeglich);
-}
-function titelVon(key,id){
-  const s=SCHRITTE.find(s=>s.key===key);
-  const o=s.optionen.find(o=>o.id===id);
-  return o?o.titel:id;
+  return s.optionen.filter(o=>
+    (!o.wenn_ziel || o.wenn_ziel.includes(wahl.ziel)) &&
+    (!o.wenn_feld || o.wenn_feld.includes(wahl.feld)));
 }
 
-/* ============ Bauleiste ============ */
-function zeichneBauleiste(){
-  const el=document.getElementById("bauleiste");
-  el.innerHTML=SCHRITTE.map((s,i)=>{
-    if(wahl[s.key]!==undefined){
-      const o=s.optionen.find(o=>o.id===wahl[s.key]);
-      return `<span class="teil"><span aria-hidden="true">${o.sym}</span><span><b>${ETIKETT[s.key]}</b> ${o.titel}</span></span>`;
-    }
-    if(i===schrittNr) return `<span class="teil leer">… Schritt ${i+1}</span>`;
-    return "";
+/* ============ Der Erzähler ============ */
+function erzaehle(key){
+  const w = WELTEN[wahl.welt], m = MASSE[wahl.groesse];
+  if(key==="welt") return WELTEN[wahl.welt].intro;
+  if(key==="ziel") return [{
+    rennen:`Und dann geht es los: ${w.held1} muss vor allen anderen ${w.zielAkk} erreichen.`,
+    sammeln:`Überall liegen ${w.bonus} herum. Wer am Ende die meisten hat, gewinnt.`,
+    fangen:`Und mittendrin lauert ${w.boeseNom}. Wer erwischt wird, ist raus.`,
+    zusammen:`Alleine schafft das niemand. Entweder ihr kommt alle ${w.zielDat} — oder keiner.`
+  }[wahl.ziel]];
+  if(key==="feld") return [{
+    rundkurs:`Der Weg führt einmal rundherum, ${w.wegBild}.`,
+    raster:`Alles spielt auf einem großen Karo-Feld: ${w.wegBild}.`,
+    pfad:`Der Weg gabelt sich immer wieder — ${w.wegBild}.`,
+    kein:`Kein Spielbrett. Die ganze Geschichte passt auf einen Stapel Karten.`
+  }[wahl.feld]];
+  if(key==="mechanik") return [{
+    wuerfel:"Wer dran ist, würfelt und zieht los.",
+    karte:"Wer dran ist, spielt eine Karte aus. Und keiner weiß vorher, was kommt.",
+    setzen:"Wer dran ist, legt ein Plättchen. Einmal gelegt, bleibt es liegen.",
+    geschick:"Wer dran ist, muss treffen. Ruhige Hand, tief durchatmen."
+  }[wahl.mechanik]];
+  if(key==="glueck") return [{
+    viel:"Das Glück entscheidet fast alles. Das macht laut und lustig.",
+    misch:"Glück hilft. Aber wer klug überlegt, hilft sich mehr.",
+    koennen:"Hier gewinnt niemand aus Versehen. Nur wer vorausdenkt."
+  }[wahl.glueck]];
+  if(key==="trick") return [{
+    falle:`Aber Vorsicht: ${w.falleSatz}`,
+    abkuerzung:"Und es gibt eine Abkürzung. Schneller — und gefährlicher.",
+    tausch:`Und man darf klauen. ${w.tauschSatz}`,
+    bonus:`Wer ${w.bonus} findet, bekommt eine Extra-Kraft. Einmal im Spiel.`,
+    zeitdruck:"Und die Zeit läuft. Dreißig Sekunden, dann ist der Nächste dran.",
+    helfen:"Aber ihr dürft euch gegenseitig retten. Einmal, jeder."
+  }[wahl.trick]];
+  if(key==="groesse") return [`Am Ende passt alles auf einen Tisch: für ${m.spieler} Spieler, ungefähr ${m.dauer} Minuten.`,"Und jetzt wird gebaut."];
+  return [];
+}
+function zeichneErzaehler(){
+  const el=document.getElementById("erzaehler");
+  if(!saetze.length){
+    el.innerHTML=`<div class="kopf">Deine Geschichte</div>
+      <p class="satz">Es war einmal … na ja. Das entscheidest du gleich selbst.</p>`;
+    return;
+  }
+  el.innerHTML=`<div class="kopf">Deine Geschichte</div>`+
+    saetze.map((s,i)=>`<p class="satz${i>=saetze.laenge0?" neu":""}">${s}</p>`).join("");
+}
+function zeichneChips(){
+  const el=document.getElementById("chips");
+  el.innerHTML=SCHRITTE.filter(s=>wahl[s.key]!==undefined).map(s=>{
+    const o=s.optionen.find(o=>o.id===wahl[s.key]);
+    return `<span class="chip">${o.sym?o.sym+" ":""}${o.titel}</span>`;
   }).join("");
 }
 
-/* ============ Frage zeichnen ============ */
+/* ============ Frage ============ */
 function zeichneFrage(){
   const wrap=document.getElementById("frage");
   if(schrittNr>=SCHRITTE.length){ zeigeBauplan(); return; }
-  const s=SCHRITTE[schrittNr];
-  const opts=optionenFuer(s);
+  wrap.style.display="";
+  const s=SCHRITTE[schrittNr], opts=optionenFuer(s);
   wrap.innerHTML=`
     <div class="schritt-zahl">Schritt ${schrittNr+1} von ${SCHRITTE.length}</div>
     <h2>${s.frage}</h2>
     <p class="unterfrage">${s.unter}</p>
     <div class="optionen">
       ${opts.map(o=>`<button class="opt ${wahl[s.key]===o.id?"gewaehlt":""}" data-id="${o.id}">
-        <span class="sym" aria-hidden="true">${o.sym}</span>
-        <span class="titel">${o.titel}</span>
-        <span class="info">${o.info}</span>
+        ${s.key==="welt" ? held(o.id) : `<span class="sym" aria-hidden="true">${o.sym}</span>`}
+        <span class="opt-text">
+          <span class="titel">${o.titel}</span>
+          <span class="info">${o.info}</span>
+          ${o.mini?`<span class="mini">${o.mini}</span>`:""}
+        </span>
       </button>`).join("")}
     </div>
     <div class="steuer">
@@ -329,26 +492,30 @@ function zeichneFrage(){
     </div>`;
   wrap.querySelectorAll(".opt").forEach(b=>b.addEventListener("click",()=>{
     wahl[s.key]=b.dataset.id;
-    // spätere Wahl kann ungültig geworden sein
     SCHRITTE.slice(schrittNr+1).forEach(sp=>{
-      if(wahl[sp.key]!==undefined){
-        const noch=optionenFuer(sp).some(o=>o.id===wahl[sp.key]);
-        if(!noch) delete wahl[sp.key];
-      }
+      if(wahl[sp.key]!==undefined && !optionenFuer(sp).some(o=>o.id===wahl[sp.key])) delete wahl[sp.key];
     });
+    saetze.laenge0=saetze.length;
+    erzaehle(s.key).forEach(x=>saetze.push(x));
     schrittNr++;
-    zeichneBauleiste(); zeichneFrage();
+    zeichneErzaehler(); zeichneChips(); zeichneFrage();
     window.scrollTo({top:0,behavior:"smooth"});
   }));
   const z=document.getElementById("zurueck");
-  if(z) z.addEventListener("click",()=>{schrittNr--;zeichneBauleiste();zeichneFrage();});
-  zeichneBauleiste();
+  if(z) z.addEventListener("click",()=>{
+    schrittNr--;
+    const s2=SCHRITTE[schrittNr];
+    saetze.length=Math.max(0,saetze.length-erzaehle(s2.key).length);
+    delete wahl[s2.key];
+    saetze.laenge0=saetze.length;
+    zeichneErzaehler(); zeichneChips(); zeichneFrage();
+  });
 }
-
-/* ============ Spielbrett zeichnen ============ */
+</script>
+<script>
+/* ============ Spielbrett ============ */
 function brettSVG(){
-  const m=MASSE[wahl.groesse], n=m.felder;
-  const sonder={};
+  const m=MASSE[wahl.groesse], n=m.felder, sonder={};
   if(wahl.trick==="falle") for(let i=4;i<n;i+=5) sonder[i]="ff";
   if(wahl.trick==="abkuerzung"){ sonder[Math.round(n*0.25)]="fa"; sonder[Math.round(n*0.7)]="fa"; }
   const kl = i => i===0 ? "fs" : (sonder[i] || "fn");
@@ -358,8 +525,7 @@ function brettSVG(){
     let out=`<ellipse class="fuehrung" cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}"/>`;
     for(let i=0;i<n;i++){
       const a=-Math.PI/2+(i/n)*2*Math.PI;
-      const x=(cx+rx*Math.cos(a)-s/2).toFixed(1), y=(cy+ry*Math.sin(a)-s/2).toFixed(1);
-      out+=`<rect class="${kl(i)}" x="${x}" y="${y}" width="${s}" height="${s}" rx="4"/>`;
+      out+=`<rect class="${kl(i)}" x="${(cx+rx*Math.cos(a)-s/2).toFixed(1)}" y="${(cy+ry*Math.sin(a)-s/2).toFixed(1)}" width="${s}" height="${s}" rx="4"/>`;
     }
     out+=`<text class="bt" x="${cx}" y="${cy-4}" text-anchor="middle">${n} Felder</text>`
        + `<text class="bs" x="${cx}" y="${cy+18}" text-anchor="middle">im Kreis</text>`;
@@ -369,209 +535,218 @@ function brettSVG(){
     const cols=Math.ceil(Math.sqrt(n)), rows=Math.ceil(n/cols), c=44, g=5, pad=12;
     const w=pad*2+cols*c+(cols-1)*g, h=pad*2+rows*c+(rows-1)*g;
     let out="", i=0;
-    for(let r=0;r<rows;r++){ for(let k=0;k<cols;k++){
-      if(i>=n) break;
-      out+=`<rect class="${kl(i)}" x="${pad+k*(c+g)}" y="${pad+r*(c+g)}" width="${c}" height="${c}" rx="6"/>`;
-      i++;
-    }}
+    for(let r=0;r<rows;r++){ for(let k=0;k<cols;k++){ if(i>=n) break;
+      out+=`<rect class="${kl(i)}" x="${pad+k*(c+g)}" y="${pad+r*(c+g)}" width="${c}" height="${c}" rx="6"/>`; i++; }}
     return `<svg viewBox="0 0 ${w} ${h}" width="${w}" role="img" aria-label="Karo-Feld mit ${n} Kästchen">${out}</svg>`;
   }
   if(wahl.feld==="pfad"){
     const cols=8, rows=Math.ceil(n/cols), c=40, g=12, pad=14;
     const w=pad*2+cols*c+(cols-1)*g, h=pad*2+rows*c+(rows-1)*g;
     let out="", i=0, punkte=[];
-    for(let r=0;r<rows;r++){ for(let k=0;k<cols;k++){
-      if(i>=n) break;
-      const kk = r%2===0 ? k : cols-1-k;
-      const x=pad+kk*(c+g), y=pad+r*(c+g);
+    for(let r=0;r<rows;r++){ for(let k=0;k<cols;k++){ if(i>=n) break;
+      const kk = r%2===0 ? k : cols-1-k, x=pad+kk*(c+g), y=pad+r*(c+g);
       punkte.push([x+c/2,y+c/2]);
-      out+=`<rect class="${kl(i)}" x="${x}" y="${y}" width="${c}" height="${c}" rx="8"/>`;
-      i++;
-    }}
-    const linie=punkte.map((p,j)=>(j?"L":"M")+p[0]+" "+p[1]).join(" ");
-    return `<svg viewBox="0 0 ${w} ${h}" width="${w}" role="img" aria-label="Weg mit ${n} Feldern"><path class="verbinder" d="${linie}"/>${out}</svg>`;
+      out+=`<rect class="${kl(i)}" x="${x}" y="${y}" width="${c}" height="${c}" rx="8"/>`; i++; }}
+    return `<svg viewBox="0 0 ${w} ${h}" width="${w}" role="img" aria-label="Weg mit ${n} Feldern"><path class="verbinder" d="${punkte.map((p,j)=>(j?"L":"M")+p[0]+" "+p[1]).join(" ")}"/>${out}</svg>`;
   }
-  const w=460,h=200;
   let out=`<rect class="stapel" x="20" y="34" width="86" height="124" rx="8"/>`
-    + `<text class="bx" x="63" y="100" text-anchor="middle">Nachzieh-</text>`
-    + `<text class="bx" x="63" y="116" text-anchor="middle">stapel</text>`;
+    + `<text class="bs" x="63" y="100" text-anchor="middle">Nachzieh-</text>`
+    + `<text class="bs" x="63" y="118" text-anchor="middle">stapel</text>`;
   for(let i=0;i<4;i++) out+=`<rect class="${i===0?"fs":"fn"}" x="${140+i*78}" y="34" width="66" height="124" rx="8"/>`;
-  out+=`<text class="bs" x="230" y="184" text-anchor="middle">4 offene Karten in der Tischmitte</text>`;
-  return `<svg viewBox="0 0 ${w} ${h}" width="${w}" role="img" aria-label="Kartenauslage ohne Spielbrett">${out}</svg>`;
+  out+=`<text class="bs" x="230" y="188" text-anchor="middle">4 offene Karten in der Tischmitte</text>`;
+  return `<svg viewBox="0 0 460 204" width="460" role="img" aria-label="Kartenauslage ohne Spielbrett">${out}</svg>`;
 }
 
-/* ============ Bauplan ============ */
+/* ============ Inhalte des Bauplans ============ */
 function material(){
-  const m=MASSE[wahl.groesse], t=THEMEN[wahl.thema], L=[];
-  if(wahl.feld==="rundkurs") L.push([1,`Spielplan aus Pappe (A3), darauf ${m.felder} Felder im Kreis`]);
-  if(wahl.feld==="raster")   L.push([1,`Spielplan aus Pappe (A3), Karo-Feld mit ${m.felder} Kästchen`]);
-  if(wahl.feld==="pfad")     L.push([1,`Spielplan aus Pappe (A3), Weg mit ${m.felder} Feldern und 2 Abzweigungen`]);
-  if(wahl.feld==="kein")     L.push([1,`Tischfläche — kein Spielplan nötig`]);
-  L.push([m.figuren,`Spielfiguren „${t.figur}“ (Deckel, Korken oder ausgeschnittene Pappe mit Fuß)`]);
+  const m=MASSE[wahl.groesse], w=WELTEN[wahl.welt], L=[];
+  const brett={rundkurs:`Spielplan aus Pappe (A3): ${m.felder} Felder im Kreis`,
+    raster:`Spielplan aus Pappe (A3): Karo-Feld mit ${m.felder} Kästchen`,
+    pfad:`Spielplan aus Pappe (A3): ein Weg mit ${m.felder} Feldern und zwei Gabelungen`,
+    kein:`kein Spielplan nötig — alles passiert auf dem Tisch`}[wahl.feld];
+  L.push([1,brett]);
+  L.push([m.figuren,`Figuren („${w.held1}“ und die anderen) — aus Flaschendeckeln, Korken oder Pappe mit Fuß`]);
   if(wahl.mechanik==="wuerfel") L.push([wahl.glueck==="viel"?1:(wahl.glueck==="misch"?2:3),"Würfel"]);
   if(wahl.mechanik==="karte")   L.push([m.karten,"Blanko-Karten für den Nachziehstapel"]);
-  if(wahl.mechanik==="setzen")  L.push([m.plaettchen,"Plättchen aus Pappe (ca. 3 × 3 cm), in Spielerfarben"]);
-  if(wahl.mechanik==="geschick")L.push([m.figuren,"flache Scheiben zum Schnippen (Knöpfe oder Flaschendeckel)"]);
-  if(wahl.trick==="falle")      L.push([Math.floor(m.felder/5),`Fallen-Felder „${t.falle}“ — rot markieren`]);
-  if(wahl.trick==="bonus")      L.push([Math.round(m.karten/2)||6,`Bonus-Karten „${t.bonus}“`]);
+  if(wahl.mechanik==="setzen")  L.push([m.plaettchen,"Plättchen aus Pappe (etwa 3 × 3 cm), in Spielerfarben"]);
+  if(wahl.mechanik==="geschick")L.push([m.figuren,"flache Scheiben zum Schnippen (Knöpfe oder Deckel)"]);
+  if(wahl.trick==="falle")      L.push([Math.floor(m.felder/5),`Fallen-Felder („${w.falle}“) — rot anmalen`]);
+  if(wahl.trick==="bonus")      L.push([Math.max(6,Math.round(m.karten/2)),`Extra-Kraft-Karten („${w.bonus}“)`]);
   if(wahl.trick==="abkuerzung") L.push([2,"Abkürzungen — mit dickem Stift als Brücke einzeichnen"]);
-  if(wahl.trick==="tausch")     L.push([1,`Merkzettel für die Tausch-Regel („${t.tausch}“)`]);
-  if(wahl.trick==="zeitdruck")  L.push([1,"Sanduhr (30 Sekunden) oder Handy-Timer"]);
-  if(wahl.trick==="helfen")     L.push([m.figuren,"Hilfe-Marker (je einer pro Spieler, einmal pro Spiel einsetzbar)"]);
-  if(wahl.ziel==="sammeln")     L.push([40,`Sammelteile „${t.bonus}“ (Muggelsteine, Bohnen oder Papierschnipsel)`]);
+  if(wahl.trick==="tausch")     L.push([1,`Merkzettel für die Klau-Regel („${w.tausch}“)`]);
+  if(wahl.trick==="zeitdruck")  L.push([1,"Sanduhr (30 Sekunden) oder ein Timer"]);
+  if(wahl.trick==="helfen")     L.push([m.figuren,"Rettungs-Marker, einer pro Spieler"]);
+  if(wahl.ziel==="sammeln")     L.push([40,`Sammelteile („${w.bonus}“) — Muggelsteine, Bohnen oder Papierschnipsel`]);
   L.push([1,"Regelheft, handgeschrieben — höchstens eine Seite"]);
   return L;
 }
-
 function regeln(){
-  const t=THEMEN[wahl.thema], m=MASSE[wahl.groesse], R=[];
-  const zielText={
-    rennen:`Alle starten auf dem grünen Feld. Wer als Erster ${t.zielAkk} erreicht, gewinnt.`,
-    sammeln:`Sammelt so viele ${t.bonus} wie möglich. Wer am Ende die meisten hat, gewinnt.`,
-    fangen:`Eine Spielerin ist ${t.feindNom} und jagt die anderen. Wer gefangen wird, scheidet aus — oder wird selbst zur Jägerin. Sucht euch eine Variante aus!`,
-    zusammen:`Ihr spielt alle gemeinsam gegen das Spiel. Ihr gewinnt nur, wenn ihr es alle ${t.zielDat} schafft, bevor die Zeit um ist.`
-  }[wahl.ziel];
-  R.push(["Ziel des Spiels",zielText]);
+  const w=WELTEN[wahl.welt], m=MASSE[wahl.groesse], R=[];
+  R.push(["Darum geht es",{
+    rennen:`Alle starten auf dem grünen Feld. Wer als Erster ${w.zielAkk} erreicht, gewinnt.`,
+    sammeln:`Sammelt so viele ${w.bonus} wie möglich. Wer am Ende die meisten hat, gewinnt.`,
+    fangen:`Einer von euch ist ${w.boeseNom} und jagt die anderen. Wer gefangen wird, scheidet aus — oder wird selbst zum Jäger. Sucht euch eine Variante aus und schreibt sie auf.`,
+    zusammen:`Ihr spielt gemeinsam gegen das Spiel. Ihr gewinnt nur, wenn ihr es alle ${w.zielDat} schafft, bevor die Zeit um ist.`
+  }[wahl.ziel]]);
   R.push(["Wenn du dran bist",ZUGREGEL[wahl.mechanik][wahl.glueck]]);
-  const trickText={
-    falle:`Wer auf einem roten Feld landet, gerät in den ${t.falle}: eine Runde aussetzen — oder drei Felder zurück, sucht euch eine Variante aus und schreibt sie auf.`,
-    abkuerzung:`Zwei Felder sind durch eine Abkürzung verbunden. Wer sie nimmt, spart viel Weg — muss aber vorher eine 6 würfeln oder eine Karte abgeben. Riskant!`,
-    tausch:`Landest du auf demselben Feld wie jemand anders, darfst du ihm ein Teil wegnehmen („${t.tausch}“). Pro Zug nur einmal.`,
-    bonus:`Es gibt Bonus-Karten („${t.bonus}“). Wer eine bekommt, legt sie offen vor sich hin und darf ihre Kraft einmal im Spiel benutzen.`,
-    zeitdruck:`Sobald du dran bist, wird die Sanduhr umgedreht. Was du in 30 Sekunden nicht geschafft hast, ist verfallen.`,
-    helfen:`Ihr dürft euch gegenseitig helfen: Steckt jemand fest, darf ein anderer seinen Zug abgeben, um ihn zu befreien. Jeder Spieler darf das nur einmal pro Spiel.`
-  }[wahl.trick];
-  R.push(["Dein besonderer Trick",trickText]);
-  const endeText={
-    rennen:`Sobald jemand ${t.zielAkk} erreicht, ist das Spiel sofort zu Ende.`,
-    sammeln:`Das Spiel endet, wenn der Nachziehstapel leer ist. Dann zählen alle ihre ${t.bonus}.`,
-    fangen:`Das Spiel endet, wenn nur noch eine Spielerin übrig ist — oder wenn alle gefangen wurden.`,
-    zusammen:`Das Spiel endet, wenn ihr es alle geschafft habt (gewonnen) oder wenn die Zeit abgelaufen ist (verloren).`
-  }[wahl.ziel];
-  R.push(["Wann ist Schluss",endeText]);
-  R.push(["Spieler und Dauer",`Für ${m.spieler} Spieler, ungefähr ${m.dauer} Minuten.`]);
+  R.push(["Der Trick",{
+    falle:`${w.falleSatz} Wer auf einem roten Feld landet, setzt eine Runde aus — oder geht drei Felder zurück. Testet beides und entscheidet euch für eine Regel.`,
+    abkuerzung:`Zwei Felder sind durch eine Abkürzung verbunden. Wer sie nimmt, spart viel Weg — muss aber vorher eine 6 würfeln oder eine Karte abgeben.`,
+    tausch:`${w.tauschSatz} Wer auf demselben Feld landet wie ein anderer, darf ihm ein Teil abnehmen. Nur einmal pro Zug!`,
+    bonus:`Wer eine Extra-Kraft-Karte („${w.bonus}“) bekommt, legt sie offen vor sich hin und darf sie einmal im Spiel benutzen.`,
+    zeitdruck:`Sobald du dran bist, wird die Sanduhr umgedreht. Was du in dreißig Sekunden nicht geschafft hast, ist weg.`,
+    helfen:`Steckt jemand fest, darf ein anderer seinen ganzen Zug abgeben, um ihn zu befreien. Jeder darf das nur einmal pro Spiel.`
+  }[wahl.trick]]);
+  R.push(["Wann ist Schluss",{
+    rennen:`Sobald jemand ${w.zielAkk} erreicht, ist sofort Schluss.`,
+    sammeln:`Wenn der Nachziehstapel leer ist. Dann zählen alle ihre ${w.bonus}.`,
+    fangen:`Wenn nur noch einer übrig ist — oder wenn alle gefangen wurden.`,
+    zusammen:`Wenn ihr es alle geschafft habt (gewonnen) oder wenn die Zeit abgelaufen ist (verloren).`
+  }[wahl.ziel]]);
+  R.push(["Für wen",`${m.spieler} Spieler, ungefähr ${m.dauer} Minuten.`]);
   return R;
 }
-
 function bastelSchritte(){
-  const t=THEMEN[wahl.thema], m=MASSE[wahl.groesse];
-  const S=[];
+  const w=WELTEN[wahl.welt], m=MASSE[wahl.groesse], S=[];
   if(wahl.feld!=="kein"){
-    S.push(`Zeichne den Spielplan mit Bleistift auf Pappe — erst die Form, dann die ${m.felder} Felder. Noch nicht anmalen!`);
-    S.push(`Markiere das Startfeld grün.` + (wahl.trick==="falle"?` Male jedes fünfte Feld rot an — das sind die Fallen.`:"") + (wahl.trick==="abkuerzung"?` Zeichne zwei Abkürzungen als Brücken quer über den Plan.`:""));
+    S.push(`Zeichne den Spielplan mit <strong>Bleistift</strong> auf Pappe — erst die Form, dann die ${m.felder} Felder. Noch nicht anmalen!`);
+    S.push(`Male das Startfeld grün an.`+(wahl.trick==="falle"?` Jedes fünfte Feld wird rot — das sind die ${w.falle}n.`:"")+(wahl.trick==="abkuerzung"?` Zeichne zwei Abkürzungen als Brücken quer über den Plan.`:""));
   } else {
-    S.push(`Schneide ${m.karten} gleich große Karten aus Pappe. Alle müssen exakt gleich aussehen, wenn sie verdeckt liegen.`);
+    S.push(`Schneide ${m.karten} gleich große Karten aus Pappe. Wichtig: Von hinten müssen alle exakt gleich aussehen.`);
   }
-  S.push(`Bastle ${m.figuren} Figuren („${t.figur}“). Wichtig: Sie müssen auf ein Feld passen und von oben gut zu unterscheiden sein.`);
-  if(wahl.mechanik==="karte") S.push(`Beschrifte die ${m.karten} Karten mit Bleistift. Noch nicht mit Filzstift — du wirst sie beim Testen bestimmt ändern.`);
+  S.push(`Bastle ${m.figuren} Figuren. Eine davon ist ${w.heldLang}. Sie müssen auf ein Feld passen und von oben gut zu unterscheiden sein.`);
+  if(wahl.mechanik==="karte") S.push(`Beschrifte die ${m.karten} Karten mit Bleistift. Nimm die Sprüche von unten oder erfinde eigene.`);
   if(wahl.mechanik==="setzen") S.push(`Schneide ${m.plaettchen} Plättchen aus und teile sie in Spielerfarben auf.`);
-  S.push(`Schreibe die Regeln auf ein einziges Blatt. Test: Kann jemand, der dein Spiel nicht kennt, es nur mit dem Blatt spielen?`);
-  S.push(`Erst wenn alles funktioniert: anmalen in ${t.farben}. Vorher wäre es Verschwendung.`);
+  S.push(`Schreib die Regeln auf <strong>ein</strong> Blatt. Test: Kann jemand, der dein Spiel nicht kennt, nur mit diesem Blatt spielen?`);
+  S.push(`Und erst jetzt, wenn alles funktioniert: anmalen in ${w.farben}. Vorher wäre es Verschwendung.`);
   return S;
 }
-
 function stellschrauben(){
   const m=MASSE[wahl.groesse], S=[];
-  const mehr={wuerfel:"ein Würfel mehr",karte:"eine Karte mehr auf der Hand",
-              setzen:"ein Plättchen mehr zur Auswahl",geschick:"ein Versuch mehr"}[wahl.mechanik];
-  const weniger={wuerfel:"ein Würfel weniger",karte:"eine Karte weniger auf der Hand",
-              setzen:"ein Plättchen weniger zur Auswahl",geschick:"ein Versuch weniger"}[wahl.mechanik];
+  const mehr={wuerfel:"ein Würfel mehr",karte:"eine Karte mehr auf der Hand",setzen:"ein Plättchen mehr zur Auswahl",geschick:"ein Versuch mehr"}[wahl.mechanik];
+  const wen={wuerfel:"ein Würfel weniger",karte:"eine Karte weniger",setzen:"ein Plättchen weniger",geschick:"ein Versuch weniger"}[wahl.mechanik];
   if(wahl.feld==="kein"){
-    S.push(`<b>Dauert zu lange?</b> Nimm ${Math.round(m.karten*0.3)} Karten aus dem Stapel.`);
-    S.push(`<b>Zu schnell vorbei?</b> Lege ${Math.round(m.karten*0.3)} Karten dazu.`);
+    S.push(`<b>Dauert zu lange?</b> Nimm ${Math.round(m.karten*0.3)} Karten raus.`);
+    S.push(`<b>Zu schnell vorbei?</b> Leg ${Math.round(m.karten*0.3)} Karten dazu.`);
   } else {
     S.push(`<b>Dauert zu lange?</b> Nimm ${Math.round(m.felder*0.25)} Felder weg.`);
-    S.push(`<b>Zu schnell vorbei?</b> Baue ${Math.round(m.felder*0.25)} Felder dazu — oder lasst alle zweimal herumlaufen.`);
+    S.push(`<b>Zu schnell vorbei?</b> Bau ${Math.round(m.felder*0.25)} Felder dazu — oder lasst alle zweimal herumlaufen.`);
   }
-  if(wahl.glueck==="viel") S.push(`<b>Immer gewinnt derselbe?</b> Bei einem Glücksspiel ist das wirklich Zufall. Spielt drei Runden hintereinander und zählt zusammen.`);
-  if(wahl.glueck==="koennen") S.push(`<b>Ein Kind gewinnt immer?</b> Gib den anderen einen Vorsprung von drei Feldern. Das nennt man Handicap — und es ist keine Schummelei, sondern gutes Design.`);
-  if(wahl.glueck==="misch") S.push(`<b>Zu viel Glück?</b> Gib mehr Auswahl: ${mehr}. <b>Zu wenig Glück?</b> Weniger Auswahl: ${weniger}.`);
-  if(wahl.trick==="falle") S.push(`<b>Fallen zu gemein?</b> Statt aussetzen nur ein Feld zurück. Testet beides und entscheidet euch.`);
-  if(wahl.trick==="zeitdruck") S.push(`<b>Sanduhr zu hektisch?</b> Nimm eine Minute statt 30 Sekunden — oder lass die Sanduhr erst ab der zweiten Runde laufen.`);
+  if(wahl.glueck==="viel") S.push(`<b>Immer gewinnt derselbe?</b> Bei einem Glücksspiel ist das wirklich Zufall. Spielt drei Runden und zählt zusammen.`);
+  if(wahl.glueck==="koennen") S.push(`<b>Einer gewinnt immer?</b> Gib den anderen drei Felder Vorsprung. Das heißt Handicap und ist keine Schummelei, sondern gutes Design.`);
+  if(wahl.glueck==="misch") S.push(`<b>Zu viel Glück?</b> Mehr Auswahl geben: ${mehr}. <b>Zu wenig?</b> Weniger Auswahl: ${wen}.`);
+  if(wahl.trick==="falle") S.push(`<b>Fallen zu gemein?</b> Statt aussetzen nur ein Feld zurück.`);
+  if(wahl.trick==="zeitdruck") S.push(`<b>Sanduhr zu hektisch?</b> Nimm eine Minute — oder lass sie erst ab Runde zwei laufen.`);
   S.push(`<b>Jemand langweilt sich, wenn er nicht dran ist?</b> Gib ihm eine Aufgabe: mitzählen, Karten umdrehen, auf die Zeit achten.`);
   return S;
 }
-
 function spielName(){
-  const t=THEMEN[wahl.thema];
-  return {
-    rennen:`Wettlauf ${t.zielDat}`,
-    sammeln:`${t.bonus}-Jagd`,
-    fangen:`Flucht vor ${t.feindDat}`,
-    zusammen:`Rettet ${t.zielAkk}!`
+  const w=WELTEN[wahl.welt];
+  return {rennen:`Wettlauf ${w.zielDat}`, sammeln:`${w.bonus}-Jagd`,
+    fangen:`Flucht vor ${w.boeseDat}`, zusammen:`Rettet ${w.zielAkk}!`}[wahl.ziel];
+}
+function geschichte(){
+  const w=WELTEN[wahl.welt];
+  const zweiter={
+    rennen:`Aber ${w.held1} ist nicht allein unterwegs. Alle wollen ${w.zielAkk} erreichen, und nur einer kommt zuerst an.`,
+    sammeln:`Überall liegen ${w.bonus} herum. Wer am Ende die meisten eingesammelt hat, hat gewonnen.`,
+    fangen:`Und dann ist da noch ${w.boeseNom}. Wer erwischt wird, ist raus.`,
+    zusammen:`Alleine schafft das keiner. Ihr müsst es zusammen ${w.zielDat} schaffen — oder ihr verliert alle gemeinsam.`
   }[wahl.ziel];
+  const dritter={falle:w.falleSatz, tausch:w.tauschSatz,
+    abkuerzung:"Es gibt eine Abkürzung. Sie ist schneller. Sie ist auch gefährlicher.",
+    bonus:`Und wer ${w.bonus} findet, bekommt eine Kraft, die er genau einmal einsetzen darf.`,
+    zeitdruck:"Und keiner hat Zeit. Dreißig Sekunden pro Zug, dann ist der Nächste dran.",
+    helfen:"Aber ihr dürft euch retten. Einmal, jeder."}[wahl.trick];
+  return [...w.intro, zweiter, dritter];
+}
+function sprueche(){
+  const w=WELTEN[wahl.welt];
+  return w.sprueche.concat(["Du machst eine Pause. Alle anderen ziehen weiter.","Erzähl einen Witz. Wenn jemand lacht: ein Feld vor."]);
 }
 
+/* ============ Bauplan ============ */
 function zeigeBauplan(){
   document.getElementById("frage").style.display="none";
-  const t=THEMEN[wahl.thema];
-  const el=document.getElementById("bauplan");
+  const w=WELTEN[wahl.welt], el=document.getElementById("bauplan");
   el.classList.add("an");
+  const zeigeSprueche = wahl.mechanik==="karte" || wahl.trick==="bonus" || wahl.trick==="falle";
   el.innerHTML=`
   <div class="plan-kopf">
-    <div class="stempel">Bauplan · fertig zum Basteln</div>
-    <input class="namensfeld" id="spielname" value="${spielName()}" aria-label="Name deines Spiels">
-    <input class="erfinder" placeholder="Erfunden von …" aria-label="Erfunden von">
+    <svg class="held" viewBox="0 0 200 132" preserveAspectRatio="xMidYMid meet" aria-hidden="true">${P[wahl.welt]}</svg>
+    <div class="txt">
+      <div class="stempel">Bauplan · fertig zum Basteln</div>
+      <input class="namensfeld" id="spielname" value="${spielName()}" aria-label="Name deines Spiels">
+      <input class="erfinder" placeholder="Erfunden von …" aria-label="Erfunden von">
+    </div>
+  </div>
+
+  <div class="geschichte">
+    <h3>So fängt es an</h3>
+    ${geschichte().map(s=>`<p>${s}</p>`).join("")}
   </div>
 
   <div class="bloecke">
     <div class="block weit">
-      <h3><span class="pille" style="background:var(--teal-bg);color:var(--teal)">Spielplan</span> So sieht dein Feld aus</h3>
+      <h3><span class="pille" style="background:var(--teal-bg);color:var(--teal)">Spielplan</span> So sieht deine Welt auf dem Tisch aus</h3>
       <div class="brett-huelle">${brettSVG()}</div>
-      <p class="brett-bei">Grün = Start${wahl.trick==="falle"?" · Rot = Falle":""}${wahl.trick==="abkuerzung"?" · Gelb = Abkürzung":""}. Übertrage das mit Bleistift auf Pappe.</p>
+      <p class="brett-bei">Grün = Start${wahl.trick==="falle"?` · Rot = ${w.falle}`:""}${wahl.trick==="abkuerzung"?" · Gelb = Abkürzung":""}. Übertrag das mit Bleistift auf Pappe.</p>
     </div>
-
     <div class="block">
       <h3><span class="pille" style="background:var(--rot-bg);color:var(--rot)">Material</span> Das brauchst du</h3>
       <ul class="liste">${material().map(([n,x])=>`<li><span class="menge">${n}×</span><span>${x}</span></li>`).join("")}</ul>
     </div>
-
     <div class="block">
       <h3><span class="pille" style="background:var(--gelb-bg);color:var(--gelb)">Bauen</span> In dieser Reihenfolge</h3>
       <ol class="schritte">${bastelSchritte().map(s=>`<li>${s}</li>`).join("")}</ol>
     </div>
-
     <div class="block weit">
       <h3><span class="pille" style="background:var(--lila-bg);color:var(--lila)">Regeln</span> Dein Regelheft</h3>
       ${regeln().map(([k,v])=>`<div class="regel"><span class="regel-titel">${k}</span><p>${v}</p></div>`).join("")}
     </div>
-
+    ${zeigeSprueche?`<div class="block weit">
+      <h3><span class="pille" style="background:var(--teal-bg);color:var(--teal)">Karten</span> Sprüche für deine Karten</h3>
+      <div class="spruchliste">${sprueche().map(s=>`<div class="spruch">${s}</div>`).join("")}</div>
+    </div>`:""}
     <div class="block weit">
-      <h3><span class="pille" style="background:var(--gelb-bg);color:var(--gelb)">Stellschrauben</span> Wenn etwas nicht stimmt</h3>
+      <h3><span class="pille" style="background:var(--gelb-bg);color:var(--gelb)">Stellschrauben</span> Wenn beim Testen etwas nicht stimmt</h3>
       <ul class="liste">${stellschrauben().map(s=>`<li><span class="stellschraube">${s}</span></li>`).join("")}</ul>
     </div>
   </div>
 
   <div class="testauftrag">
     <h3>Dein Testauftrag</h3>
-    <p>Lass zwei Kinder dein Spiel spielen, die es noch nicht kennen. <strong>Du darfst nichts erklären
-    und nichts verteidigen</strong> — nur zusehen und aufschreiben, wo sie stocken. Wenn sie die Regel
-    nicht verstehen, ist die Regel schuld, nicht die Spieler.</p>
-    <p style="margin-top:10px">Danach änderst du <strong>genau eine Sache</strong> und testest noch einmal.</p>
+    <p>Lass zwei Kinder spielen, die dein Spiel noch nicht kennen. <strong>Du darfst nichts erklären
+    und nichts verteidigen</strong> — nur zusehen und aufschreiben, wo sie hängenbleiben. Wenn sie die
+    Regel nicht verstehen, ist die Regel schuld. Nicht die Spieler.</p>
+    <p style="margin-top:10px">Danach änderst du <strong>genau eine Sache</strong> und lässt noch einmal spielen.</p>
   </div>
 
   <div class="fuss-steuer nodruck">
-    <button class="knopf stark" id="nochmal">Noch ein Spiel bauen</button>
+    <button class="knopf stark" id="nochmal">Noch ein Spiel erfinden</button>
     <button class="knopf" id="aendern">Letzte Entscheidung ändern</button>
     <span>Zum Ausdrucken: ⌘/Strg + P</span>
   </div>`;
 
   document.getElementById("nochmal").addEventListener("click",()=>{
     Object.keys(wahl).forEach(k=>delete wahl[k]);
-    schrittNr=0;
+    saetze.length=0; saetze.laenge0=0; schrittNr=0;
     el.classList.remove("an"); el.innerHTML="";
-    document.getElementById("frage").style.display="";
-    zeichneFrage(); window.scrollTo({top:0,behavior:"smooth"});
+    zeichneErzaehler(); zeichneChips(); zeichneFrage();
+    window.scrollTo({top:0,behavior:"smooth"});
   });
   document.getElementById("aendern").addEventListener("click",()=>{
     schrittNr=SCHRITTE.length-1;
+    const s2=SCHRITTE[schrittNr];
+    saetze.length=Math.max(0,saetze.length-erzaehle(s2.key).length);
+    delete wahl[s2.key]; saetze.laenge0=saetze.length;
     el.classList.remove("an"); el.innerHTML="";
-    document.getElementById("frage").style.display="";
-    zeichneFrage(); window.scrollTo({top:0,behavior:"smooth"});
+    zeichneErzaehler(); zeichneChips(); zeichneFrage();
+    window.scrollTo({top:0,behavior:"smooth"});
   });
-  zeichneBauleiste();
   window.scrollTo({top:0,behavior:"smooth"});
 }
 
-zeichneFrage();
+saetze.laenge0=0;
+zeichneErzaehler(); zeichneChips(); zeichneFrage();
 </script>
